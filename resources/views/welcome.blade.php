@@ -299,12 +299,12 @@
 
             <!-- Right visual -->
             <div class="flex-1 relative w-full reveal-up reveal-delay-200 flex justify-center lg:justify-end mt-10 lg:mt-0">
-                <div class="relative w-full max-w-[480px] aspect-[4/5] lg:aspect-square flex items-center justify-center">
+                <div class="relative w-full max-w-[480px] aspect-[4/5] lg:aspect-square flex items-center justify-center tilt-image-container">
                     <!-- Decorative rings -->
                     <div class="absolute inset-0 border border-[#00F0FF]/20 rounded-full animate-[spin_20s_linear_infinite]"></div>
                     <div class="absolute inset-8 border border-white/10 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
-                    <div class="w-full h-full p-4 relative z-10" style="animation: float 6s ease-in-out infinite;">
-                        <img src="{{ asset('images/aqua_sensor.png') }}" alt="AquaSmart underwater IoT sensor buoy" width="480" height="480" fetchpriority="high" class="w-full h-full object-cover rounded-3xl shadow-[0_30px_60px_-15px_rgba(0,240,255,0.25)] border border-white/10" />
+                    <div class="w-full h-full p-4 relative z-10 tilt-image" style="animation: float 6s ease-in-out infinite;">
+                        <img src="{{ asset('images/aqua_sensor.png') }}" alt="AquaSmart underwater IoT sensor buoy" width="480" height="480" fetchpriority="high" class="w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(0,240,255,0.3)]" />
                     </div>
                 </div>
             </div>
@@ -322,7 +322,7 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             <!-- Feature Card 1 -->
-            <div class="float-card glass-panel rounded-3xl p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-100">
+            <div class="float-card glass-panel rounded-3xl p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-100 glow-border">
                 <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity" aria-hidden="true">
                     <svg class="w-24 h-24 text-[#00F0FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                 </div>
@@ -370,7 +370,7 @@
             </div>
 
             <!-- Feature Card 3 -->
-            <div class="float-card glass-panel rounded-3xl p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-300">
+            <div class="float-card glass-panel rounded-3xl p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-300 glow-border">
                 <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity" aria-hidden="true">
                     <svg class="w-24 h-24 text-[#00F0FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
                 </div>
@@ -400,8 +400,8 @@
     <section id="dashboard" class="w-full py-24 z-10">
       <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center gap-16">
         <div class="flex-1 w-full order-2 lg:order-1 relative reveal-up">
-            <div class="w-full aspect-[4/3] rounded-3xl overflow-hidden glass-panel border border-white/10 shadow-[0_20px_50px_-20px_rgba(0,240,255,0.4)] relative group cursor-pointer group float-card">
-                <img src="{{ asset('images/aqua_dashboard.png') }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="AquaSmart real-time aquaculture dashboard interface" width="800" height="600" loading="lazy" />
+            <div class="w-full aspect-[4/3] rounded-3xl overflow-hidden glass-panel border border-white/10 shadow-[0_20px_50px_-20px_rgba(0,240,255,0.4)] relative group cursor-pointer group float-card tilt-image-container">
+                <img src="{{ asset('images/aqua_dashboard.png') }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 tilt-image" alt="AquaSmart real-time aquaculture dashboard interface" width="800" height="600" loading="lazy" />
                 <div class="absolute inset-0 bg-gradient-to-t from-[#071121] via-transparent to-transparent opacity-80"></div>
                 <!-- Mock Overlay Elements -->
                 <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end">
@@ -468,6 +468,152 @@
                     <img src="{{ asset('images/aqua_facility.png') }}" class="w-full h-full object-cover" alt="Modern Recirculating Aquaculture System facility" width="600" height="600" loading="lazy" />
                     <!-- Vignette -->
                     <div class="absolute inset-0 shadow-[inset_0_0_100px_rgba(7,17,33,0.8)] pointer-events-none"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BioMetric Monitoring Section (NEW) -->
+    <section id="biometrics" class="w-full py-24 z-10 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="flex flex-col lg:flex-row items-end justify-between gap-8 mb-16 reveal-up">
+                <div class="max-w-2xl text-center lg:text-left">
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Precision <span class="text-[#00F0FF]">Biometrics</span></h2>
+                    <p class="text-zinc-500">Monitor health data and growth coefficients with AI-driven telemetry. Every pixel represents a heartbeat of your farm.</p>
+                </div>
+                <div class="hidden lg:flex items-center gap-4 text-xs font-mono uppercase tracking-[0.2em] text-[#00F0FF]/60 bg-[#00F0FF]/5 px-4 py-2 rounded-lg border border-[#00F0FF]/10">
+                    <span class="w-2 h-2 rounded-full bg-[#00F0FF] animate-ping"></span> Live Link Active
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Monitor Card 1 -->
+                <div class="float-card glass-panel p-6 rounded-2xl border border-white/5 reveal-up reveal-delay-100">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="text-zinc-500 text-xs font-bold uppercase tracking-wider">Growth Rate</div>
+                        <div class="text-[#00F0FF] text-xs font-mono">+4.2%</div>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-4 tracking-tighter">0.85<span class="text-sm font-normal text-zinc-500 ml-1">cm/day</span></div>
+                    <div class="meter-bar mb-1"><div class="meter-fill" style="--fill-level: 85%"></div></div>
+                    <div class="flex justify-between text-[10px] text-zinc-600 font-mono mt-2">
+                        <span>MIN 0.20</span>
+                        <span>MAX 1.00</span>
+                    </div>
+                </div>
+
+                <!-- Monitor Card 2 -->
+                <div class="float-card glass-panel p-6 rounded-2xl border border-white/5 reveal-up reveal-delay-200">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="text-zinc-500 text-xs font-bold uppercase tracking-wider">Oxygen Sat.</div>
+                        <div class="text-[#00F0FF] text-xs font-mono">NOMINAL</div>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-4 tracking-tighter">9.2<span class="text-sm font-normal text-zinc-500 ml-1">mg/L</span></div>
+                    <div class="meter-bar mb-1"><div class="meter-fill" style="--fill-level: 92%"></div></div>
+                    <div class="flex justify-between text-[10px] text-zinc-600 font-mono mt-2">
+                        <span>CRITICAL 5.0</span>
+                        <span>TARGET 9.5</span>
+                    </div>
+                </div>
+
+                <!-- Monitor Card 3 -->
+                <div class="float-card glass-panel p-6 rounded-2xl border border-white/5 reveal-up reveal-delay-300">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="text-zinc-500 text-xs font-bold uppercase tracking-wider">Feed Intake</div>
+                        <div class="text-[#00F0FF] text-xs font-mono">OPTIMAL</div>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-4 tracking-tighter">1.2<span class="text-sm font-normal text-zinc-500 ml-1">kg/m³</span></div>
+                    <div class="meter-bar mb-1"><div class="meter-fill" style="--fill-level: 75%"></div></div>
+                    <div class="flex justify-between text-[10px] text-zinc-600 font-mono mt-2">
+                        <span>BATCH #822</span>
+                        <span>98.6% EFF.</span>
+                    </div>
+                </div>
+
+                <!-- Monitor Card 4 -->
+                <div class="float-card glass-panel p-6 rounded-2xl border border-white/5 reveal-up reveal-delay-400">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="text-zinc-500 text-xs font-bold uppercase tracking-wider">Tank Pressure</div>
+                        <div class="text-[#F04444] text-xs font-mono animate-pulse">WARNING</div>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-4 tracking-tighter">102.4<span class="text-sm font-normal text-zinc-500 ml-1">kPa</span></div>
+                    <div class="meter-bar mb-1"><div class="meter-fill" style="--fill-level: 65%; background: #F04444"></div></div>
+                    <div class="flex justify-between text-[10px] text-zinc-600 font-mono mt-2 transition-all">
+                        <span>LIMIT 105.0</span>
+                        <span>RESET VALVE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BioMetric Monitoring Section (NEW) -->
+    <section id="biometrics" class="w-full py-24 z-10 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="flex flex-col lg:flex-row items-end justify-between gap-8 mb-16 reveal-up">
+                <div class="max-w-2xl text-center lg:text-left">
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Precision <span class="text-[#00F0FF]">Biometrics</span></h2>
+                    <p class="text-zinc-500">Monitor health data and growth coefficients with AI-driven telemetry. Every pixel represents a heartbeat of your farm.</p>
+                </div>
+                <div class="hidden lg:flex items-center gap-4 text-xs font-mono uppercase tracking-[0.2em] text-[#00F0FF]/60 bg-[#00F0FF]/5 px-4 py-2 rounded-lg border border-[#00F0FF]/10">
+                    <span class="w-2 h-2 rounded-full bg-[#00F0FF] animate-ping"></span> Live Link Active
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Monitor Card 1 -->
+                <div class="float-card glass-panel p-6 rounded-2xl border border-white/5 reveal-up reveal-delay-100">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="text-zinc-500 text-xs font-bold uppercase tracking-wider">Growth Rate</div>
+                        <div class="text-[#00F0FF] text-xs font-mono">+4.2%</div>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-4 tracking-tighter">0.85<span class="text-sm font-normal text-zinc-500 ml-1">cm/day</span></div>
+                    <div class="meter-bar mb-1"><div class="meter-fill" style="--fill-level: 85%"></div></div>
+                    <div class="flex justify-between text-[10px] text-zinc-600 font-mono mt-2">
+                        <span>MIN 0.20</span>
+                        <span>MAX 1.00</span>
+                    </div>
+                </div>
+
+                <!-- Monitor Card 2 -->
+                <div class="float-card glass-panel p-6 rounded-2xl border border-white/5 reveal-up reveal-delay-200">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="text-zinc-500 text-xs font-bold uppercase tracking-wider">Oxygen Sat.</div>
+                        <div class="text-[#00F0FF] text-xs font-mono">NOMINAL</div>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-4 tracking-tighter">9.2<span class="text-sm font-normal text-zinc-500 ml-1">mg/L</span></div>
+                    <div class="meter-bar mb-1"><div class="meter-fill" style="--fill-level: 92%"></div></div>
+                    <div class="flex justify-between text-[10px] text-zinc-600 font-mono mt-2">
+                        <span>CRITICAL 5.0</span>
+                        <span>TARGET 9.5</span>
+                    </div>
+                </div>
+
+                <!-- Monitor Card 3 -->
+                <div class="float-card glass-panel p-6 rounded-2xl border border-white/5 reveal-up reveal-delay-300">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="text-zinc-500 text-xs font-bold uppercase tracking-wider">Feed Intake</div>
+                        <div class="text-[#00F0FF] text-xs font-mono">OPTIMAL</div>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-4 tracking-tighter">1.2<span class="text-sm font-normal text-zinc-500 ml-1">kg/m³</span></div>
+                    <div class="meter-bar mb-1"><div class="meter-fill" style="--fill-level: 75%"></div></div>
+                    <div class="flex justify-between text-[10px] text-zinc-600 font-mono mt-2">
+                        <span>BATCH #822</span>
+                        <span>98.6% EFF.</span>
+                    </div>
+                </div>
+
+                <!-- Monitor Card 4 -->
+                <div class="float-card glass-panel p-6 rounded-2xl border border-white/5 reveal-up reveal-delay-400">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="text-zinc-500 text-xs font-bold uppercase tracking-wider">Tank Pressure</div>
+                        <div class="text-[#F04444] text-xs font-mono animate-pulse">WARNING</div>
+                    </div>
+                    <div class="text-3xl font-bold text-white mb-4 tracking-tighter">102.4<span class="text-sm font-normal text-zinc-500 ml-1">kPa</span></div>
+                    <div class="meter-bar mb-1"><div class="meter-fill" style="--fill-level: 65%; background: #F04444"></div></div>
+                    <div class="flex justify-between text-[10px] text-zinc-600 font-mono mt-2 transition-all">
+                        <span>LIMIT 105.0</span>
+                        <span>RESET VALVE</span>
+                    </div>
                 </div>
             </div>
         </div>

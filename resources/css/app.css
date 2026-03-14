@@ -81,29 +81,79 @@
   .reveal-delay-300 { transition-delay: 300ms; }
   .reveal-delay-400 { transition-delay: 400ms; }
   
+  /* Premium 3D Tilt Effect for Images */
+  .tilt-image-container {
+    perspective: 1000px;
+  }
+  .tilt-image {
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease;
+    transform-style: preserve-3d;
+  }
+  @media (hover: hover) {
+    .tilt-image-container:hover .tilt-image {
+      transform: rotateX(5deg) rotateY(-5deg) scale(1.05);
+      box-shadow: 0 30px 60px -15px rgba(0, 240, 255, 0.3);
+    }
+  }
+
+  /* Glowing Border Effect for Cards */
+  .glow-border {
+    position: relative;
+    overflow: hidden;
+  }
+  .glow-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(45deg, transparent, rgba(0, 240, 255, 0.3), transparent);
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .glow-border:hover::before {
+    opacity: 1;
+    animation: border-glow 2s linear infinite;
+  }
+  @keyframes border-glow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
   /* The "Ngambang" Hover Rule for mobile & desktop */
-  /* This fulfills the user requirement for hover floating effect */
   .float-card {
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                border-color 0.4s ease, 
+                background 0.4s ease;
+    will-change: transform, box-shadow;
   }
 
-  /* Make hover also work as touch state by ensuring it triggers active/focus or fallback for touch */
   @media (hover: hover) and (pointer: fine) {
-    .float-card:hover, .float-card.is-active {
-      transform: translateY(-12px);
-      box-shadow: 0 20px 40px -10px rgba(0, 240, 255, 0.15);
+    .float-card:hover {
+      transform: translateY(-16px) scale(1.02);
+      box-shadow: 0 25px 50px -12px rgba(0, 240, 255, 0.25);
+      border-color: rgba(0, 240, 255, 0.4);
+      background: rgba(255, 255, 255, 0.08);
+    }
+  }
+
+  /* Mobile Active State */
+  @media (hover: none) and (pointer: coarse) {
+    .float-card:active {
+      transform: translateY(-8px) scale(0.98);
+      box-shadow: 0 15px 30px -10px rgba(0, 240, 255, 0.2);
       border-color: rgba(68, 162, 240, 0.5);
       background: rgba(255, 255, 255, 0.05);
     }
   }
 
-  /* Fallback for touch screens (Android, Tablet) using JS class */
-  @media (hover: none) and (pointer: coarse) {
-    .float-card.is-active {
-      transform: translateY(-12px) scale(0.98);
-      box-shadow: 0 15px 30px -10px rgba(0, 240, 255, 0.15);
-      border-color: rgba(68, 162, 240, 0.5);
-      background: rgba(255, 255, 255, 0.05);
-    }
+  /* Animated Meter Bar */
+  .meter-bar {
+    @apply h-1.5 w-full bg-white/10 rounded-full overflow-hidden relative;
+  }
+  .meter-fill {
+    @apply h-full bg-gradient-to-r from-aqua-light to-aqua-glow rounded-full;
+    width: var(--fill-level, 0%);
+    transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 }
