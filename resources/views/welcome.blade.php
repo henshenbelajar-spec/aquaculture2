@@ -149,8 +149,6 @@
         -webkit-tap-highlight-color: transparent;
       }
     </style>
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-[#071121] text-zinc-300 antialiased selection:bg-[#00F0FF] selection:text-[#071121] min-h-screen overflow-x-hidden">
 
