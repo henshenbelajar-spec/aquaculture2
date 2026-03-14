@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth" style="color-scheme: dark;">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="AquaSmart — Next-gen precision aquaculture technology. Monitor water quality, oxygen, and temperature in real time.">
+    <meta name="theme-color" content="#071121">
+    <title>AquaSmart | Next-Gen Aquaculture Technology</title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+      /* ===== BASE ===== */
+      body { font-family: 'Outfit', sans-serif; }
+
+      /* Skip to content (accessibility) */
+      .skip-link {
+        position: absolute; top: -100%; left: 1rem;
+        background: #00F0FF; color: #071121; padding: 0.5rem 1rem;
+        border-radius: 0 0 0.5rem 0.5rem; font-weight: 700; z-index: 9999;
+        transition: top 0.2s ease;
+        text-decoration: none;
+      }
+      .skip-link:focus { top: 0; }
+
+      /* Focus ring for keyboard users */
+      :focus-visible {
+        outline: 2px solid #00F0FF;
+        outline-offset: 3px;
+        border-radius: 4px;
+      }
+
+      /* ===== GLOWS ===== */
+      .glow-blob-1 {
+        position: absolute; top: 10%; left: -10%; width: 50vw; height: 50vw;
+        background: radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, transparent 60%);
+        filter: blur(80px); z-index: -1;
+        animation: float 8s infinite alternate ease-in-out;
+      }
+      .glow-blob-2 {
+        position: absolute; bottom: 10%; right: -10%; width: 60vw; height: 60vw;
+        background: radial-gradient(circle, rgba(68, 162, 240, 0.1) 0%, transparent 60%);
+        filter: blur(100px); z-index: -1;
+        animation: float 10s infinite alternate-reverse ease-in-out;
+      }
+
+      /* ===== GLASS ===== */
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      /* ===== FLOAT CARD (specific props, not transition:all) ===== */
+      .float-card {
+        transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                    border-color 0.4s ease,
+                    box-shadow 0.4s ease,
+                    background 0.4s ease;
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .float-card:hover {
+          transform: translateY(-12px);
+          border-color: rgba(68, 162, 240, 0.4) !important;
+          box-shadow: 0 20px 40px -10px rgba(0, 240, 255, 0.2);
+          background: rgba(255,255,255,0.06);
+        }
+      }
+      @media (hover: none) and (pointer: coarse) {
+        .float-card:active, .float-card.is-active {
+          transform: translateY(-8px) scale(0.98);
+          border-color: rgba(68, 162, 240, 0.4) !important;
+          box-shadow: 0 10px 25px -5px rgba(0, 240, 255, 0.2);
+          background: rgba(255,255,255,0.06);
+        }
+      }
+
+      /* Inner blocks */
+      .inner-block {
+        transition: border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease, color 0.4s ease;
+      }
+      .float-card:hover .inner-block, .float-card.is-active .inner-block {
+        border-color: rgba(0, 240, 255, 0.4);
+        box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        background: rgba(0, 240, 255, 0.1);
+        color: #fff;
+      }
+
+      /* ===== GRID BACKGROUND ===== */
+      .bg-grid {
+        background-size: 40px 40px;
+        background-image:
+          linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      }
+
+      /* ===== BUBBLES ===== */
+      @keyframes bubble-rise {
+        0%   { transform: translateY(0) scale(1); opacity: 0.6; }
+        50%  { opacity: 0.3; }
+        100% { transform: translateY(-100vh) scale(0.6); opacity: 0; }
+      }
+      .bubble {
+        position: absolute; border-radius: 50%;
+        background: radial-gradient(circle at 30% 30%, rgba(0,240,255,0.3), rgba(0,100,200,0.1));
+        border: 1px solid rgba(0, 240, 255, 0.2);
+        animation: bubble-rise linear infinite;
+        pointer-events: none;
+      }
+
+      /* ===== REDUCED MOTION ===== */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+        .reveal-up {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      }
+
+      /* ===== NAVBAR ACTIVE LINK ===== */
+      .nav-link {
+        position: relative;
+        color: rgba(161,161,170,1);
+        transition: color 0.2s ease;
+      }
+      .nav-link::after {
+        content: '';
+        position: absolute; bottom: -4px; left: 0; right: 0;
+        height: 1px;
+        background: #00F0FF;
+        transform: scaleX(0);
+        transition: transform 0.25s ease;
+        transform-origin: left;
+      }
+      .nav-link:hover { color: #fff; }
+      .nav-link:hover::after { transform: scaleX(1); }
+
+      /* ===== TOUCH ===== */
+      button, a {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+      }
+    </style>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="bg-[#071121] text-zinc-300 antialiased selection:bg-[#00F0FF] selection:text-[#071121] min-h-screen overflow-x-hidden">
+
+    <!-- Skip to main content (a11y) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Ambient Background Glows -->
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-[-1]">
+        <div class="glow-blob-1"></div>
+        <div class="glow-blob-2"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-white/5 py-4 backdrop-blur-xl" aria-label="Main navigation">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between gap-8">
+
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group shrink-0" aria-label="AquaSmart home">
+                <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-[#00F0FF] to-[#154576] flex items-center justify-center shadow-[0_0_15px_rgba(0,240,255,0.3)] group-hover:shadow-[0_0_25px_rgba(0,240,255,0.5)] transition-shadow duration-300">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-white"><span class="text-[#00F0FF]">Aqua</span>Smart</span>
+            </a>
+
+            <!-- Center nav links (desktop: md and up) -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium flex-1 justify-center">
+                <a href="#features" class="nav-link">System</a>
+                <a href="#dashboard" class="nav-link">Dashboard</a>
+                <a href="#facility" class="nav-link">Facilities</a>
+            </div>
+
+            <!-- CTA Buttons + Hamburger -->
+            <div class="flex items-center gap-3 shrink-0">
+                <a href="#" class="hidden md:inline-block px-5 py-2 text-sm font-semibold rounded-full border border-white/10 hover:border-[#00F0FF]/50 hover:bg-[#00F0FF]/10 transition-colors duration-200 text-white">Log in</a>
+                <a href="#" class="hidden md:inline-flex px-5 py-2 text-sm font-bold rounded-full bg-white text-black hover:bg-zinc-200 hover:scale-[1.03] transition-transform duration-300 shadow-[0_0_20px_rgba(255,255,255,0.2)]">Get Started</a>
+                <!-- Hamburger (mobile only) -->
+                <button id="nav-toggle" class="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-[5px] rounded-lg hover:bg-white/10 transition-colors duration-200" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <span class="nav-bar w-5 h-[2px] bg-white rounded-full transition-transform duration-300 origin-center"></span>
+                    <span class="nav-bar w-5 h-[2px] bg-white rounded-full transition-opacity duration-300"></span>
+                    <span class="nav-bar w-5 h-[2px] bg-white rounded-full transition-transform duration-300 origin-center"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile dropdown — hidden by default via inline style; JS toggles display:block -->
+        <div id="mobile-menu" style="display:none" class="border-t border-white/5" aria-hidden="true">
+            <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-1">
+                <a href="#features" class="nav-link block py-3 text-base border-b border-white/5" onclick="aquaNavClose()">System</a>
+                <a href="#dashboard" class="nav-link block py-3 text-base border-b border-white/5" onclick="aquaNavClose()">Dashboard</a>
+                <a href="#facility"  class="nav-link block py-3 text-base"                         onclick="aquaNavClose()">Facilities</a>
+                <div class="flex gap-3 pt-4 mt-1">
+                    <a href="#" class="flex-1 text-center py-2.5 text-sm font-semibold rounded-full border border-white/10 hover:bg-[#00F0FF]/10 hover:border-[#00F0FF]/50 transition-colors duration-200 text-white">Log in</a>
+                    <a href="#" class="flex-1 text-center py-2.5 text-sm font-bold rounded-full bg-white text-black hover:bg-zinc-200 transition-colors duration-200">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <style>
+      /* Hamburger animation: keyed off aria-expanded attribute — no JS class needed */
+      #nav-toggle[aria-expanded="true"] .nav-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      #nav-toggle[aria-expanded="true"] .nav-bar:nth-child(2) { opacity: 0; }
+      #nav-toggle[aria-expanded="true"] .nav-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    </style>
+    <script>
+      function aquaNavClose() {
+        document.getElementById('mobile-menu').style.display = 'none';
+        document.getElementById('mobile-menu').setAttribute('aria-hidden', 'true');
+        document.getElementById('nav-toggle').setAttribute('aria-expanded', 'false');
+      }
+      document.getElementById('nav-toggle').addEventListener('click', function() {
+        var menu = document.getElementById('mobile-menu');
+        var nowOpen = (menu.style.display === 'none' || menu.style.display === '');
+        menu.style.display = nowOpen ? 'block' : 'none';
+        menu.setAttribute('aria-hidden', String(!nowOpen));
+        this.setAttribute('aria-expanded', String(nowOpen));
+      });
+      /* Auto-close if user rotates/resizes to tablet+ */
+      window.addEventListener('resize', function() {
+        if (window.innerWidth >= 768) aquaNavClose();
+      });
+    </script>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main id="main-content">
+
+    <!-- Hero Section -->
+    <section class="relative w-full overflow-hidden flex flex-col items-center min-h-[90vh] lg:min-h-screen">
+
+        <!-- Grid Background (hero only) - fades out at 65% height -->
+        <div class="absolute inset-0 bg-grid pointer-events-none z-0"
+             style="mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 65%, transparent 100%);
+                    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 65%, transparent 100%);
+                    opacity: 0.5;"></div>
+
+        <!-- Global glow behind heading (Pai Joki style) -->
+        <div class="absolute top-[35%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] pointer-events-none z-0"
+             style="background: radial-gradient(ellipse at center, rgba(0,100,240,0.40) 0%, rgba(0,240,255,0.15) 40%, transparent 70%); filter: blur(60px);"></div>
+
+        <!-- Floating Bubbles -->
+        <div class="absolute inset-0 overflow-hidden pointer-events-none z-0" id="bubbles-container">
+            <div class="bubble" style="width:12px;height:12px;left:10%;bottom:-50px;animation-duration:9s;animation-delay:0s;"></div>
+            <div class="bubble" style="width:8px;height:8px;left:22%;bottom:-50px;animation-duration:12s;animation-delay:2s;"></div>
+            <div class="bubble" style="width:18px;height:18px;left:35%;bottom:-50px;animation-duration:10s;animation-delay:1s;"></div>
+            <div class="bubble" style="width:6px;height:6px;left:48%;bottom:-50px;animation-duration:14s;animation-delay:4s;"></div>
+            <div class="bubble" style="width:14px;height:14px;left:60%;bottom:-50px;animation-duration:11s;animation-delay:0.5s;"></div>
+            <div class="bubble" style="width:10px;height:10px;left:72%;bottom:-50px;animation-duration:8s;animation-delay:3s;"></div>
+            <div class="bubble" style="width:20px;height:20px;left:82%;bottom:-50px;animation-duration:13s;animation-delay:1.5s;"></div>
+            <div class="bubble" style="width:7px;height:7px;left:90%;bottom:-50px;animation-duration:10s;animation-delay:5s;"></div>
+            <div class="bubble" style="width:16px;height:16px;left:5%;bottom:-50px;animation-duration:15s;animation-delay:2.5s;"></div>
+            <div class="bubble" style="width:9px;height:9px;left:55%;bottom:-50px;animation-duration:9s;animation-delay:6s;"></div>
+        </div>
+
+        <div class="relative w-full max-w-7xl mx-auto px-6 md:px-12 pt-32 pb-20 md:pt-44 md:pb-28 lg:pt-52 lg:pb-36 flex flex-col lg:flex-row items-center justify-between gap-16 z-10">
+
+            <!-- Left text — centered on mobile, left-aligned on desktop -->
+            <div class="flex-1 w-full flex flex-col items-center lg:items-start text-center lg:text-left reveal-up">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-white/10 text-xs font-semibold text-[#00F0FF] mb-8 uppercase tracking-wider backdrop-blur-md">
+                    <span class="w-2 h-2 rounded-full bg-[#00F0FF] animate-pulse"></span>
+                    Next-Gen Aquaculture Technology
+                </div>
+
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-[1.05] mb-6 w-full">
+                    Precision <br class="hidden lg:block"/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] via-[#44AAFF] to-[#44A2F0]"
+                          style="filter: drop-shadow(0 0 35px rgba(0,200,255,0.7)) drop-shadow(0 0 70px rgba(0,120,255,0.4));">Farming Data.</span>
+                </h1>
+
+                <p class="text-lg md:text-xl text-zinc-400 mb-10 max-w-xl font-light leading-relaxed">
+                    Elevate your fish farming with cutting-edge smart sensors and real-time dashboard analytics. Monitor water quality, oxygen levels, and temperature effortlessly.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center gap-4">
+                    <a href="#features" class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-[#00F0FF] to-[#44A2F0] text-[#071121] font-bold text-base hover:scale-105 transition-all duration-300 shadow-[0_0_25px_rgba(0,240,255,0.5)] hover:shadow-[0_0_40px_rgba(0,240,255,0.7)] text-center">
+                        Explore Ecosystem
+                    </a>
+                    <a href="#" class="w-full sm:w-auto px-8 py-4 rounded-full glass-panel border border-[#00F0FF]/30 text-white font-medium text-base hover:bg-[#00F0FF]/10 transition-all duration-300 flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        Watch Demo
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right visual -->
+            <div class="flex-1 relative w-full reveal-up reveal-delay-200 flex justify-center lg:justify-end mt-10 lg:mt-0">
+                <div class="relative w-full max-w-[480px] aspect-[4/5] lg:aspect-square flex items-center justify-center">
+                    <!-- Decorative rings -->
+                    <div class="absolute inset-0 border border-[#00F0FF]/20 rounded-full animate-[spin_20s_linear_infinite]"></div>
+                    <div class="absolute inset-8 border border-white/10 rounded-full animate-[spin_15s_linear_infinite_reverse]"></div>
+                    <div class="w-full h-full p-4 relative z-10" style="animation: float 6s ease-in-out infinite;">
+                        <img src="{{ asset('images/aqua_sensor.png') }}" alt="AquaSmart underwater IoT sensor buoy" width="480" height="480" fetchpriority="high" class="w-full h-full object-cover rounded-3xl shadow-[0_30px_60px_-15px_rgba(0,240,255,0.25)] border border-white/10" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section id="features" class="w-full py-24 z-10">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="text-center mb-16 reveal-up">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Master Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] to-[#44A2F0]">Ecosystem</span></h2>
+            <p class="text-zinc-400 max-w-2xl mx-auto text-pretty">Advanced telemetry meets intuitive design. Our smart tools empower you with actionable insights right at your fingertips.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <!-- Feature Card 1 -->
+            <div class="float-card glass-panel rounded-3xl p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-100">
+                <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity" aria-hidden="true">
+                    <svg class="w-24 h-24 text-[#00F0FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                </div>
+                <div class="w-14 h-14 rounded-2xl glass-panel bg-[#44A2F0]/20 flex items-center justify-center border border-[#44A2F0]/30 mb-6 group-hover:bg-[#00F0FF]/20 transition-colors" aria-hidden="true">
+                    <svg class="w-7 h-7 text-[#00F0FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Live Water Quality</h3>
+                <p class="text-zinc-400 text-sm leading-relaxed mb-6 flex-1">
+                    Continuously monitor pH, Dissolved Oxygen (DO), salinity, and turbidity with our military-grade submersive sensors.
+                </p>
+                <!-- Decorative Blocks per Pathinel Node requirements -->
+                <div class="flex gap-3 mb-4 mt-auto">
+                    <div class="inner-block px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 text-xs font-semibold text-zinc-400 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#00F0FF]" aria-hidden="true"></span> Sensor 1
+                    </div>
+                    <div class="inner-block px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 text-xs font-semibold text-zinc-400 flex items-center gap-2" style="transition-delay: 50ms;">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#44A2F0]" aria-hidden="true"></span> Node Basic
+                    </div>
+                </div>
+                <div class="w-full h-[1px] bg-gradient-to-r from-white/10 to-transparent" aria-hidden="true"></div>
+            </div>
+
+            <!-- Feature Card 2 -->
+            <div class="float-card glass-panel rounded-3xl p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-200">
+                <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity" aria-hidden="true">
+                    <svg class="w-24 h-24 text-[#00F0FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+                </div>
+                <div class="w-14 h-14 rounded-2xl glass-panel bg-[#44A2F0]/20 flex items-center justify-center border border-[#44A2F0]/30 mb-6 group-hover:bg-[#00F0FF]/20 transition-colors" aria-hidden="true">
+                    <svg class="w-7 h-7 text-[#00F0FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Smart Automation</h3>
+                <p class="text-zinc-400 text-sm leading-relaxed mb-6 flex-1">
+                    Connect IoT aerators and automated feeders. Trigger actions based on real-time environmental data parameters.
+                </p>
+                <!-- Decorative Blocks per Pathinel Node requirements -->
+                <div class="flex gap-3 mb-4 mt-auto">
+                    <div class="inner-block px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 text-xs font-semibold text-zinc-400 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#00F0FF]" aria-hidden="true"></span> Node Guest
+                    </div>
+                    <div class="inner-block px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 text-xs font-semibold text-zinc-400 flex items-center gap-2" style="transition-delay: 50ms;">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#44A2F0]" aria-hidden="true"></span> Switch
+                    </div>
+                </div>
+                <div class="w-full h-[1px] bg-gradient-to-r from-white/10 to-transparent" aria-hidden="true"></div>
+            </div>
+
+            <!-- Feature Card 3 -->
+            <div class="float-card glass-panel rounded-3xl p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-300">
+                <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity" aria-hidden="true">
+                    <svg class="w-24 h-24 text-[#00F0FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
+                </div>
+                <div class="w-14 h-14 rounded-2xl glass-panel bg-[#44A2F0]/20 flex items-center justify-center border border-[#44A2F0]/30 mb-6 group-hover:bg-[#00F0FF]/20 transition-colors" aria-hidden="true">
+                    <svg class="w-7 h-7 text-[#00F0FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Predictive Analytics</h3>
+                <p class="text-zinc-400 text-sm leading-relaxed mb-6 flex-1">
+                    Leverage AI models to forecast biomass growth, disease risk, and energy consumption across your farming modules.
+                </p>
+                <!-- Decorative Blocks per Pathinel Node requirements -->
+                <div class="flex gap-3 mb-4 mt-auto">
+                    <div class="inner-block px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 text-xs font-semibold text-zinc-400 flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#00F0FF]" aria-hidden="true"></span> Node Pro
+                    </div>
+                    <div class="inner-block px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 text-xs font-semibold text-zinc-400 flex items-center gap-2" style="transition-delay: 50ms;">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#44A2F0]" aria-hidden="true"></span> Sync DB
+                    </div>
+                </div>
+                <div class="w-full h-[1px] bg-gradient-to-r from-white/10 to-transparent" aria-hidden="true"></div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UI/Dashboard Presentation -->
+    <section id="dashboard" class="w-full py-24 z-10">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center gap-16">
+        <div class="flex-1 w-full order-2 lg:order-1 relative reveal-up">
+            <div class="w-full aspect-[4/3] rounded-3xl overflow-hidden glass-panel border border-white/10 shadow-[0_20px_50px_-20px_rgba(0,240,255,0.4)] relative group cursor-pointer group float-card">
+                <img src="{{ asset('images/aqua_dashboard.png') }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="AquaSmart real-time aquaculture dashboard interface" width="800" height="600" loading="lazy" />
+                <div class="absolute inset-0 bg-gradient-to-t from-[#071121] via-transparent to-transparent opacity-80"></div>
+                <!-- Mock Overlay Elements -->
+                <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+                    <div class="glass-panel px-4 py-2 rounded-xl border border-white/20 backdrop-blur-md">
+                        <div class="text-xs text-[#00F0FF] uppercase tracking-wider mb-1">Water Temp</div>
+                        <div class="text-2xl font-bold text-white tracking-tight">24.5<span class="text-sm font-normal text-zinc-400">°C</span></div>
+                    </div>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white flex items-center justify-center hover:scale-110 transition-transform shadow-[0_0_15px_rgba(255,255,255,0.5)]">
+                        <svg class="w-5 h-5 text-black transform -rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex-1 order-1 lg:order-2 reveal-up reveal-delay-200">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Deep Context. <br/> <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] to-[#44A2F0]">Clear Visibility.</span></h2>
+            <p class="text-zinc-400 text-lg mb-8 leading-relaxed font-light">
+                Our intuitive dashboard aggregates thousands of data points into a singular clean interface. Monitor entire fleets of aquatic tanks or open-water pens simultaneously on any device.
+            </p>
+            <ul class="space-y-4 mb-8">
+                <li class="flex items-center gap-3 text-zinc-300">
+                    <svg class="w-6 h-6 text-[#00F0FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span>Customizable alert thresholds</span>
+                </li>
+                <li class="flex items-center gap-3 text-zinc-300">
+                    <svg class="w-6 h-6 text-[#00F0FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span>Historical data exporting (CSV, PDF)</span>
+                </li>
+                <li class="flex items-center gap-3 text-zinc-300">
+                    <svg class="w-6 h-6 text-[#00F0FF]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span>Multi-tiered user access control</span>
+                </li>
+                </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Facility / Scale Section -->
+    <section id="facility" class="w-full py-24 z-10 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#154576]/10 to-transparent" aria-hidden="true"></div>
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative flex flex-col lg:flex-row items-center gap-16">
+            <div class="flex-1 reveal-up">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-[#44A2F0]/30 text-xs font-semibold text-[#44A2F0] mb-6 uppercase tracking-wider">
+                    Infrastructure
+                </div>
+                <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Designed for <br/> <span class="text-white">Massive Scale</span></h2>
+                <p class="text-zinc-400 text-lg mb-8 leading-relaxed font-light">
+                    Whether you are managing a boutique indoor RAS (Recirculating Aquaculture System) or an industrial scale offshore farm, AquaSmart seamlessly integrates with your existing infrastructure. 
+                </p>
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <div class="text-4xl font-bold text-white tracking-tight mb-1">99.9<span class="text-[#00F0FF]">%</span></div>
+                        <div class="text-sm text-zinc-500">Uptime Reliability</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-white tracking-tight mb-1"><span class="text-[#00F0FF]">+</span>40<span class="text-[#00F0FF]">%</span></div>
+                        <div class="text-sm text-zinc-500">Harvest Yields</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex-1 w-full reveal-up reveal-delay-200">
+                <div class="aspect-square md:aspect-[4/3] w-full rounded-full lg:rounded-[3rem] overflow-hidden border-4 border-white/5 relative float-card">
+                    <img src="{{ asset('images/aqua_facility.png') }}" class="w-full h-full object-cover" alt="Modern Recirculating Aquaculture System facility" width="600" height="600" loading="lazy" />
+                    <!-- Vignette -->
+                    <div class="absolute inset-0 shadow-[inset_0_0_100px_rgba(7,17,33,0.8)] pointer-events-none"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="max-w-5xl mx-auto px-6 py-24 z-10 w-full reveal-up">
+        <div class="relative w-full rounded-[2rem] overflow-hidden glass-panel p-10 md:p-16 text-center border border-[#00F0FF]/20 shadow-[0_0_50px_-10px_rgba(0,240,255,0.15)] flex flex-col items-center">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-gradient-to-b from-[#00F0FF]/20 to-transparent blur-3xl rounded-[100%] z-[-1] pointer-events-none" aria-hidden="true"></div>
+
+            <h2 class="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight drop-shadow-md text-balance">Ready to dive in?</h2>
+            <p class="text-lg text-zinc-300 mb-10 max-w-xl font-light text-pretty">Join the top aquaculture sites worldwide who use AquaSmart to secure their yields and monitor their environment.</p>
+
+            <a href="#" class="px-10 py-5 rounded-full bg-white text-black font-bold text-lg hover:scale-105 transition-transform duration-300 shadow-[0_0_30px_rgba(255,255,255,0.3)]">
+                Start Your Trial
+            </a>
+            <p class="mt-6 text-sm text-zinc-500">No credit card required &bull; Free 14-day evaluation</p>
+        </div>
+    </section>
+
+    </main><!-- /main-content -->
+
+    <!-- Footer -->
+    <footer class="w-full border-t border-white/10 mt-12 bg-[#071121]/80 backdrop-blur-lg pt-16 pb-8 z-10" aria-label="Site footer">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            <div class="col-span-1 md:col-span-1">
+                <div class="flex items-center gap-2 mb-6">
+                    <div class="w-6 h-6 rounded bg-gradient-to-br from-[#00F0FF] to-[#154576] flex items-center justify-center" aria-hidden="true">
+                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <span class="text-lg font-bold text-white tracking-wide">AquaSmart</span>
+                </div>
+                <p class="text-sm text-zinc-500 leading-relaxed font-light">Building intelligent tools for modern aquatic farms. Precision data, simplified.</p>
+            </div>
+
+            <div>
+                <h4 class="font-semibold text-white mb-4 tracking-wide">Products</h4>
+                <ul class="space-y-3 text-sm text-zinc-500">
+                    <li><a href="#" class="hover:text-[#00F0FF] transition-colors duration-200">Sensor Network</a></li>
+                    <li><a href="#" class="hover:text-[#00F0FF] transition-colors duration-200">Analytics Dashboard</a></li>
+                    <li><a href="#" class="hover:text-[#00F0FF] transition-colors duration-200">Automated Feeder API</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-semibold text-white mb-4 tracking-wide">Resources</h4>
+                <ul class="space-y-3 text-sm text-zinc-500">
+                    <li><a href="#" class="hover:text-[#00F0FF] transition-colors duration-200">Documentation</a></li>
+                    <li><a href="#" class="hover:text-[#00F0FF] transition-colors duration-200">Case Studies</a></li>
+                    <li><a href="#" class="hover:text-[#00F0FF] transition-colors duration-200">Help Center</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="font-semibold text-white mb-4 tracking-wide">Legal</h4>
+                <ul class="space-y-3 text-sm text-zinc-500">
+                    <li><a href="#" class="hover:text-[#00F0FF] transition-colors duration-200">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-[#00F0FF] transition-colors duration-200">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between text-xs text-zinc-600">
+            <p>&copy; 2026 AquaSmart Technologies. All rights reserved.</p>
+            <nav aria-label="Social links" class="flex gap-4 mt-4 md:mt-0">
+                <a href="#" class="hover:text-white transition-colors duration-200">Twitter</a>
+                <a href="#" class="hover:text-white transition-colors duration-200">LinkedIn</a>
+                <a href="#" class="hover:text-[#00F0FF] transition-colors duration-200">GitHub</a>
+            </nav>
+        </div>
+      </div>
+    </footer>
+
+</body>
+</html>

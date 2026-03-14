@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: oklch(97% 0.02 245);
+  --color-brand-100: oklch(94% 0.04 245);
+  --color-brand-200: oklch(88% 0.08 245);
+  --color-brand-300: oklch(80% 0.12 245);
+  --color-brand-400: oklch(72% 0.16 245);
+  --color-brand-500: oklch(65% 0.18 245);
+  --color-brand-600: oklch(55% 0.15 245);
+  --color-brand-700: oklch(45% 0.12 245);
+  --color-brand-800: oklch(35% 0.10 245);
+  --color-brand-900: oklch(25% 0.08 245);
+  --color-brand-950: oklch(15% 0.05 245);
+  --color-brand-accent: oklch(75% 0.15 200);
+
+  /* Aqua theme variables */
+  --color-aqua-dark: #071121;
+  --color-aqua-deep: #0C213B;
+  --color-aqua-mid: #154576;
+  --color-aqua-light: #44A2F0;
+  --color-aqua-glow: #00F0FF;
+
+  --font-sans: 'Outfit', 'Inter', system-ui, sans-serif;
+
+  --animate-float: float 6s ease-in-out infinite;
+  
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+}
+
+@layer base {
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+  
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+  
+  .lenis.lenis-smooth iframe {
+    pointer-events: none;
+  }
+
+  body {
+    @apply bg-aqua-dark text-white font-sans antialiased overflow-x-hidden;
+    /* Deep ocean gradient background */
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(21, 69, 118, 0.25), transparent 35%),
+      radial-gradient(circle at 85% 30%, rgba(68, 162, 240, 0.15), transparent 30%),
+      radial-gradient(circle at 50% 100%, rgba(0, 240, 255, 0.05), transparent 40%);
+    background-attachment: fixed;
+    background-color: var(--color-aqua-dark);
+  }
+
+  /* Scroll Observer Utilities */
+  .reveal-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-100 { transition-delay: 100ms; }
+  .reveal-delay-200 { transition-delay: 200ms; }
+  .reveal-delay-300 { transition-delay: 300ms; }
+  .reveal-delay-400 { transition-delay: 400ms; }
+  
+  /* The "Ngambang" Hover Rule for mobile & desktop */
+  /* This fulfills the user requirement for hover floating effect */
+  .float-card {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+  }
+
+  /* Make hover also work as touch state by ensuring it triggers active/focus or fallback for touch */
+  @media (hover: hover) and (pointer: fine) {
+    .float-card:hover, .float-card.is-active {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px -10px rgba(0, 240, 255, 0.15);
+      border-color: rgba(68, 162, 240, 0.5);
+      background: rgba(255, 255, 255, 0.05);
+    }
+  }
+
+  /* Fallback for touch screens (Android, Tablet) using JS class */
+  @media (hover: none) and (pointer: coarse) {
+    .float-card.is-active {
+      transform: translateY(-12px) scale(0.98);
+      box-shadow: 0 15px 30px -10px rgba(0, 240, 255, 0.15);
+      border-color: rgba(68, 162, 240, 0.5);
+      background: rgba(255, 255, 255, 0.05);
+    }
+  }
+}
