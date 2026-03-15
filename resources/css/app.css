@@ -101,50 +101,163 @@
     position: relative;
     overflow: hidden;
   }
-  .glow-border::before {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    background: linear-gradient(45deg, transparent, rgba(0, 240, 255, 0.3), transparent);
-    z-index: 0;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-  .glow-border:hover::before {
-    opacity: 1;
-    animation: border-glow 2s linear infinite;
-  }
-  @keyframes border-glow {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+
+  /* Pathinel-inspired premium hover card system */
+  .float-card {
+    --pointer-x: 50%;
+    --pointer-y: 50%;
+    --card-rotate-x: 0deg;
+    --card-rotate-y: 0deg;
+    --card-lift: 0px;
+    position: relative;
+    isolation: isolate;
+    transform:
+      perspective(1200px)
+      rotateX(var(--card-rotate-x))
+      rotateY(var(--card-rotate-y))
+      translate3d(0, var(--card-lift), 0);
+    transform-style: preserve-3d;
+    transition:
+      transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.35s ease,
+      background 0.35s ease,
+      filter 0.35s ease;
+    box-shadow:
+      0 24px 55px -34px rgba(3, 8, 18, 0.95),
+      inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    will-change: transform, box-shadow;
   }
 
-  /* The "Ngambang" Hover Rule for mobile & desktop */
-  .float-card {
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
-                box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
-                border-color 0.4s ease, 
-                background 0.4s ease;
-    will-change: transform, box-shadow;
+  .float-card::before,
+  .float-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    transition:
+      opacity 0.45s ease,
+      transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.35s ease;
+  }
+
+  .float-card::before {
+    inset: -18%;
+    z-index: 0;
+    opacity: 0;
+    background:
+      radial-gradient(
+        circle at var(--pointer-x) var(--pointer-y),
+        rgba(0, 240, 255, 0.22) 0%,
+        rgba(68, 162, 240, 0.16) 14%,
+        rgba(12, 33, 59, 0.10) 28%,
+        transparent 58%
+      );
+    mix-blend-mode: screen;
+    filter: blur(10px);
+    transform: scale(0.92);
+  }
+
+  .float-card::after {
+    z-index: 1;
+    opacity: 0;
+    border: 1px solid rgba(160, 227, 255, 0.08);
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 28%),
+      linear-gradient(320deg, rgba(0, 240, 255, 0.08), transparent 34%);
+  }
+
+  .float-card > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  .inner-block {
+    transition:
+      transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.35s ease,
+      box-shadow 0.35s ease,
+      background 0.35s ease,
+      color 0.35s ease;
   }
 
   @media (hover: hover) and (pointer: fine) {
     .float-card:hover {
-      transform: translateY(-16px) scale(1.02);
-      box-shadow: 0 25px 50px -12px rgba(0, 240, 255, 0.25);
-      border-color: rgba(0, 240, 255, 0.4);
-      background: rgba(255, 255, 255, 0.08);
+      --card-lift: -14px;
+      box-shadow:
+        0 42px 80px -40px rgba(3, 8, 18, 0.95),
+        0 30px 60px -38px rgba(0, 240, 255, 0.32),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      border-color: rgba(0, 240, 255, 0.28);
+      background:
+        linear-gradient(180deg, rgba(18, 41, 70, 0.78), rgba(7, 17, 33, 0.92));
+      filter: saturate(1.05);
+    }
+
+    .float-card:hover::before {
+      opacity: 1;
+      transform: scale(1.04);
+    }
+
+    .float-card:hover::after {
+      opacity: 1;
+      border-color: rgba(144, 228, 255, 0.16);
+    }
+
+    .float-card:hover .inner-block {
+      transform: translateY(-2px);
+      border-color: rgba(0, 240, 255, 0.30);
+      box-shadow:
+        0 14px 28px -22px rgba(0, 240, 255, 0.65),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      background: rgba(0, 240, 255, 0.10);
+      color: rgba(255, 255, 255, 0.98);
     }
   }
 
   /* Mobile Active State */
   @media (hover: none) and (pointer: coarse) {
-    .float-card:active {
-      transform: translateY(-8px) scale(0.98);
-      box-shadow: 0 15px 30px -10px rgba(0, 240, 255, 0.2);
-      border-color: rgba(68, 162, 240, 0.5);
-      background: rgba(255, 255, 255, 0.05);
+    .float-card:active,
+    .float-card.is-active {
+      --card-lift: -8px;
+      box-shadow:
+        0 28px 52px -34px rgba(3, 8, 18, 0.9),
+        0 20px 38px -26px rgba(68, 162, 240, 0.28);
+      border-color: rgba(68, 162, 240, 0.38);
+      background:
+        linear-gradient(180deg, rgba(18, 41, 70, 0.62), rgba(7, 17, 33, 0.9));
     }
+
+    .float-card:active::before,
+    .float-card.is-active::before,
+    .float-card:active::after,
+    .float-card.is-active::after {
+      opacity: 1;
+      transform: scale(1.02);
+    }
+
+    .float-card:active .inner-block,
+    .float-card.is-active .inner-block {
+      transform: translateY(-1px);
+      border-color: rgba(68, 162, 240, 0.3);
+      box-shadow: 0 12px 24px -20px rgba(68, 162, 240, 0.5);
+      background: rgba(68, 162, 240, 0.10);
+      color: rgba(255, 255, 255, 0.96);
+    }
+  }
+
+  .float-card:focus-within {
+    --card-lift: -6px;
+    box-shadow:
+      0 36px 72px -40px rgba(3, 8, 18, 0.95),
+      0 24px 50px -34px rgba(0, 240, 255, 0.2);
+    border-color: rgba(0, 240, 255, 0.24);
+  }
+
+  .float-card:focus-within::before,
+  .float-card:focus-within::after {
+    opacity: 1;
   }
 
   /* Animated Meter Bar */
