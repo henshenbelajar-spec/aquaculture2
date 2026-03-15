@@ -406,14 +406,8 @@
         </section>
 
         <!-- Key Features Section -->
-        <section id="features" class="ocean-band ocean-band--currents w-full py-24 z-10">
-            <div class="ocean-band__layers" aria-hidden="true">
-                <span class="ocean-band__layer ocean-band__layer--glow"></span>
-                <span class="ocean-band__layer ocean-band__layer--flow"></span>
-                <span class="ocean-band__layer ocean-band__layer--motes"></span>
-                <span class="ocean-band__layer ocean-band__layer--rings"></span>
-            </div>
-            <div class="ocean-band__content max-w-7xl mx-auto px-6 md:px-12">
+        <section id="features" class="w-full py-24 z-10">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
                 <div class="text-center mb-16 reveal-up">
                     <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Master Your <span
                             class="text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] to-[#44A2F0]">Ecosystem</span>
@@ -612,17 +606,11 @@
         </section>
 
         <!-- UI/Dashboard Presentation -->
-        <section id="dashboard" class="ocean-band ocean-band--clarity w-full py-24 z-10">
-            <div class="ocean-band__layers" aria-hidden="true">
-                <span class="ocean-band__layer ocean-band__layer--glow"></span>
-                <span class="ocean-band__layer ocean-band__layer--flow"></span>
-                <span class="ocean-band__layer ocean-band__layer--motes"></span>
-                <span class="ocean-band__layer ocean-band__layer--rings"></span>
-            </div>
-            <div class="ocean-band__content max-w-7xl mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center gap-16">
+        <section id="dashboard" class="w-full py-24 z-10">
+            <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center gap-16">
                 <div class="flex-1 w-full order-2 lg:order-1 relative reveal-up">
                     <div
-                        class="clarity-panel w-full aspect-[4/3] rounded-3xl overflow-hidden glass-panel border border-white/10 shadow-[0_20px_50px_-20px_rgba(0,240,255,0.4)] relative group cursor-pointer group float-card tilt-image-container">
+                        class="w-full aspect-[4/3] rounded-3xl overflow-hidden glass-panel border border-white/10 shadow-[0_20px_50px_-20px_rgba(0,240,255,0.4)] relative group cursor-pointer group float-card tilt-image-container">
                         <img src="{{ asset('images/aqua_dashboard.png') }}"
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 tilt-image"
                             alt="AquaSmart real-time aquaculture dashboard interface" width="800" height="600"
@@ -688,16 +676,10 @@
         </section>
 
         <!-- Facility / Scale Section -->
-        <section id="facility" class="ocean-band ocean-band--depth w-full py-24 z-10 relative">
-            <div class="ocean-band__layers" aria-hidden="true">
-                <span class="ocean-band__layer ocean-band__layer--glow"></span>
-                <span class="ocean-band__layer ocean-band__layer--flow"></span>
-                <span class="ocean-band__layer ocean-band__layer--motes"></span>
-                <span class="ocean-band__layer ocean-band__layer--rings"></span>
-            </div>
+        <section id="facility" class="w-full py-24 z-10 relative">
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#154576]/10 to-transparent"
                 aria-hidden="true"></div>
-            <div class="ocean-band__content max-w-7xl mx-auto px-6 md:px-12 relative flex flex-col lg:flex-row items-center gap-16">
+            <div class="max-w-7xl mx-auto px-6 md:px-12 relative flex flex-col lg:flex-row items-center gap-16">
                 <div class="flex-1 reveal-up">
                     <div
                         class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-[#44A2F0]/30 text-xs font-semibold text-[#44A2F0] mb-6 uppercase tracking-wider">
@@ -726,7 +708,7 @@
 
                 <div class="flex-1 w-full reveal-up reveal-delay-200">
                     <div
-                        class="scale-visual aspect-square md:aspect-[4/3] w-full rounded-full lg:rounded-[3rem] overflow-hidden border-4 border-white/5 relative float-card">
+                        class="aspect-square md:aspect-[4/3] w-full rounded-full lg:rounded-[3rem] overflow-hidden border-4 border-white/5 relative float-card">
                         <img src="{{ asset('images/aqua_facility.png') }}" class="w-full h-full object-cover"
                             alt="Modern Recirculating Aquaculture System facility" width="600" height="600"
                             loading="lazy" />
@@ -738,16 +720,9 @@
             </div>
         </section>
         <!-- Monitoring Dashboard Showcase -->
-        <section id="biometrics" class="ocean-band ocean-band--surface w-full py-24 z-10 relative overflow-hidden">
-            <div class="ocean-band__layers" aria-hidden="true">
-                <span class="ocean-band__layer ocean-band__layer--glow"></span>
-                <span class="ocean-band__layer ocean-band__layer--flow"></span>
-                <span class="ocean-band__layer ocean-band__layer--motes"></span>
-                <span class="ocean-band__layer ocean-band__layer--rings"></span>
-            </div>
+        <section id="biometrics" class="w-full py-24 z-10 relative overflow-hidden">
             <div class="absolute inset-x-0 top-24 h-[420px] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_62%)] pointer-events-none"
                 aria-hidden="true"></div>
-            <div class="ocean-band__content">
             <div class="dashboard-showcase reveal-up">
                 <div class="dashboard-showcase-inner max-w-7xl mx-auto px-6 md:px-12 relative">
                     <div class="dashboard-showcase-grid grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-14 items-center p-6 md:p-8 xl:p-10">
@@ -890,19 +865,11 @@
                     </div>
                 </div>
             </div>
-            </div>
         </section>
         <!-- CTA Section -->
-        <section class="ocean-band ocean-band--tide py-24 z-10 w-full reveal-up">
-            <div class="ocean-band__layers" aria-hidden="true">
-                <span class="ocean-band__layer ocean-band__layer--glow"></span>
-                <span class="ocean-band__layer ocean-band__layer--flow"></span>
-                <span class="ocean-band__layer ocean-band__layer--motes"></span>
-                <span class="ocean-band__layer ocean-band__layer--rings"></span>
-            </div>
-            <div class="ocean-band__content max-w-5xl mx-auto px-6">
+        <section class="max-w-5xl mx-auto px-6 py-24 z-10 w-full reveal-up">
             <div
-                class="tide-cta relative w-full rounded-[2rem] overflow-hidden glass-panel p-10 md:p-16 text-center border border-[#00F0FF]/20 shadow-[0_0_50px_-10px_rgba(0,240,255,0.15)] flex flex-col items-center">
+                class="relative w-full rounded-[2rem] overflow-hidden glass-panel p-10 md:p-16 text-center border border-[#00F0FF]/20 shadow-[0_0_50px_-10px_rgba(0,240,255,0.15)] flex flex-col items-center">
                 <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-gradient-to-b from-[#00F0FF]/20 to-transparent blur-3xl rounded-[100%] z-[-1] pointer-events-none"
                     aria-hidden="true"></div>
 
@@ -916,7 +883,6 @@
                     Start Your Trial
                 </a>
                 <p class="mt-6 text-sm text-zinc-500">No credit card required &bull; Free 14-day evaluation</p>
-            </div>
             </div>
         </section>
 
