@@ -6,6 +6,11 @@
       "sourceType": "github",
       "computedHash": "516bd2154eb843a8240e43d5b285229129853114ad7075a5e141e1c08e408c84"
     },
+    "home-assistant-dashboards-cards": {
+      "source": "bradsjm/hassio-addons",
+      "sourceType": "github",
+      "computedHash": "fd3332511f033ca7c727773d90ac43445c2e398b97be2d0c143ac530c5c07e3a"
+    },
     "tailwind-design-system": {
       "source": "wshobson/agents",
       "sourceType": "github",
