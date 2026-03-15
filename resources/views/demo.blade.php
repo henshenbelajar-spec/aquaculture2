@@ -18,41 +18,26 @@
         body {
             font-family: 'Outfit', sans-serif;
             background:
-                radial-gradient(circle at top, rgba(0, 240, 255, 0.14), transparent 30%),
-                linear-gradient(180deg, #071121 0%, #08192d 48%, #071121 100%);
+                linear-gradient(180deg, #08111d 0%, #0b1624 46%, #09111c 100%);
         }
 
         .demo-shell {
-            background: linear-gradient(180deg, rgba(10, 25, 42, 0.88), rgba(6, 14, 26, 0.94));
-            border: 1px solid rgba(168, 232, 255, 0.12);
+            background: rgba(11, 20, 32, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.07);
             box-shadow:
-                0 40px 90px -56px rgba(0, 0, 0, 0.86),
-                0 24px 54px -38px rgba(0, 240, 255, 0.18),
-                inset 0 1px 0 rgba(255, 255, 255, 0.06);
+                0 32px 64px -52px rgba(0, 0, 0, 0.72),
+                inset 0 1px 0 rgba(255, 255, 255, 0.04);
         }
 
         .demo-video-wrap {
             position: relative;
             overflow: hidden;
-            border-radius: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background:
-                radial-gradient(circle at top, rgba(0, 240, 255, 0.10), transparent 30%),
-                rgba(5, 12, 22, 0.95);
+            border-radius: 1.6rem;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            background: rgba(5, 12, 22, 0.95);
             box-shadow:
-                0 28px 64px -42px rgba(2, 8, 18, 0.9),
+                0 24px 52px -40px rgba(2, 8, 18, 0.86),
                 inset 0 1px 0 rgba(255, 255, 255, 0.04);
-        }
-
-        .demo-video-wrap::after {
-            content: '';
-            position: absolute;
-            inset: auto 8% -18% 8%;
-            height: 26%;
-            border-radius: 999px;
-            background: radial-gradient(circle, rgba(0, 240, 255, 0.18), transparent 70%);
-            filter: blur(18px);
-            pointer-events: none;
         }
 
         .demo-video {
@@ -62,31 +47,65 @@
             aspect-ratio: 16 / 9;
             background: #02070f;
         }
+
+        .demo-kicker {
+            color: #97ecff;
+            letter-spacing: 0.22em;
+        }
+
+        .demo-back {
+            color: #d9e7f2;
+        }
+
+        .demo-back:hover {
+            border-color: rgba(151, 236, 255, 0.26);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .demo-meta {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .demo-chip {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #c6d5e3;
+        }
+
+        .demo-caption {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
     </style>
 </head>
 
 <body class="min-h-screen overflow-x-hidden text-white antialiased">
     <main class="relative min-h-screen px-6 py-8 md:px-10 lg:px-12">
-        <div class="mx-auto flex min-h-[calc(100vh-4rem)] max-w-6xl flex-col justify-center">
-            <div class="reveal-up demo-shell rounded-[2.25rem] p-6 md:p-8 lg:p-10">
-                <div class="mb-8 flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+        <div class="mx-auto flex min-h-[calc(100vh-4rem)] max-w-5xl flex-col justify-center">
+            <div class="reveal-up demo-shell rounded-[2rem] p-6 md:p-8 lg:p-10">
+                <div class="mb-8 flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
                     <div>
+                        <div class="demo-kicker text-[11px] font-semibold uppercase">AquaSmart Demo Room</div>
                         <a href="{{ url('/') }}"
-                            class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#91EFFF] transition hover:border-[#00F0FF]/40 hover:bg-[#00F0FF]/10">
+                            class="demo-back mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/4 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] transition">
                             <span aria-hidden="true">&larr;</span>
                             Back to Home
                         </a>
-                        <h1 class="mt-5 text-4xl font-bold tracking-tight text-white md:text-6xl">Watch Demo</h1>
-                        <p class="mt-4 max-w-2xl text-base leading-relaxed text-[#97A8BD] md:text-lg">
-                            Explore the AquaSmart demo video in a focused playback view. Use full screen, scrub the
-                            timeline, or unmute directly from the player.
+                        <h1 class="mt-5 text-4xl font-bold tracking-tight text-white md:text-5xl">Watch Demo</h1>
+                        <p class="mt-4 max-w-2xl text-base leading-relaxed text-[#9CB0C2] md:text-lg">
+                            Lihat walkthrough AquaSmart dalam tampilan yang lebih fokus dan nyaman. Tinggal play,
+                            full screen, atau scrub sesuai kebutuhan.
                         </p>
+                        <div class="mt-5 flex flex-wrap gap-3">
+                            <div class="demo-chip rounded-full px-4 py-2 text-sm">Product Walkthrough</div>
+                            <div class="demo-chip rounded-full px-4 py-2 text-sm">MP4 Playback</div>
+                        </div>
                     </div>
 
-                    <div class="rounded-[1.75rem] border border-white/10 bg-white/5 px-5 py-4 backdrop-blur-md">
-                        <div class="text-[11px] font-bold uppercase tracking-[0.24em] text-[#91EFFF]">Demo Source</div>
+                    <div class="demo-meta rounded-[1.25rem] px-5 py-4">
+                        <div class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#97ECFF]">Now Playing</div>
                         <div class="mt-2 text-sm font-medium text-white">AquaSmart Product Walkthrough</div>
-                        <div class="mt-1 text-sm text-[#8CA1B6]">MP4 video, local project asset</div>
+                        <div class="mt-1 text-sm text-[#8CA1B6]">Focus view for onboarding and demo review</div>
                     </div>
                 </div>
 
@@ -95,6 +114,10 @@
                         src="{{ asset('videos/aquasmart-demo.mp4') }}">
                         Your browser does not support the video tag.
                     </video>
+                </div>
+
+                <div class="demo-caption mt-6 pt-5 text-sm text-[#8CA1B6]">
+                    <p>Tip: gunakan full screen untuk presentasi ke client atau tim internal.</p>
                 </div>
             </div>
         </div>
