@@ -88,6 +88,10 @@
     </head>
 
     <body class="min-h-screen overflow-x-hidden text-white antialiased">
+        <script>
+            const demoVideoUrl =
+                "https://replace-this-with-your-hosted-demo-video-url.mp4";
+        </script>
         <main class="relative min-h-screen px-6 py-8 md:px-10 lg:px-12">
             <div class="mx-auto flex min-h-[calc(100vh-4rem)] max-w-5xl flex-col justify-center">
                 <div class="reveal-up demo-shell rounded-[2rem] p-6 md:p-8 lg:p-10">
@@ -133,17 +137,11 @@
                         </div>
                     </div>
 
-                    <div class="demo-video-wrap reveal-up reveal-delay-100 p-3 md:p-4">
-                        <video
-                            class="demo-video rounded-[1.4rem]"
-                            controls
-                            playsinline
-                            preload="metadata"
-                            autoplay
-                            src="/videos/aquasmart-demo.mp4"
-                        >
-                            Your browser does not support the video tag.
-                        </video>
+                    <div class="demo-video-wrap reveal-up reveal-delay-100 p-3 md:p-4" id="demo-video-slot">
+                        <div class="demo-video rounded-[1.4rem] flex items-center justify-center px-6 text-center text-[#9CB0C2]">
+                            Upload video demo ke host eksternal lalu ganti nilai
+                            <code class="mx-1 text-[#D8E7F1]">demoVideoUrl</code>.
+                        </div>
                     </div>
 
                     <div class="demo-caption mt-6 pt-5 text-sm text-[#8CA1B6]">
@@ -156,5 +154,26 @@
         </main>
 
         <script type="module" src="/build/assets/app2.js"></script>
+        <script>
+            if (
+                demoVideoUrl &&
+                !demoVideoUrl.includes(
+                    "replace-this-with-your-hosted-demo-video-url"
+                )
+            ) {
+                document.getElementById("demo-video-slot").innerHTML = `
+                    <video
+                        class="demo-video rounded-[1.4rem]"
+                        controls
+                        playsinline
+                        preload="metadata"
+                        autoplay
+                        src="${demoVideoUrl}"
+                    >
+                        Your browser does not support the video tag.
+                    </video>
+                `;
+            }
+        </script>
     </body>
 </html>

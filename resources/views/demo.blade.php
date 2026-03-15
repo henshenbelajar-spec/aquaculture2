@@ -1,3 +1,4 @@
+@php($demoVideoUrl = 'https://replace-this-with-your-hosted-demo-video-url.mp4')
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth" style="color-scheme: dark;">
 
@@ -110,10 +111,16 @@
                 </div>
 
                 <div class="demo-video-wrap reveal-up reveal-delay-100 p-3 md:p-4">
-                    <video class="demo-video rounded-[1.4rem]" controls playsinline preload="metadata" autoplay
-                        src="{{ asset('videos/aquasmart-demo.mp4') }}">
-                        Your browser does not support the video tag.
-                    </video>
+                    @if (str_contains($demoVideoUrl, 'replace-this-with-your-hosted-demo-video-url'))
+                        <div class="demo-video rounded-[1.4rem] flex items-center justify-center px-6 text-center text-[#9CB0C2]">
+                            Upload video demo ke host eksternal lalu ganti URL di <code class="mx-1 text-[#D8E7F1]">$demoVideoUrl</code>.
+                        </div>
+                    @else
+                        <video class="demo-video rounded-[1.4rem]" controls playsinline preload="metadata" autoplay
+                            src="{{ $demoVideoUrl }}">
+                            Your browser does not support the video tag.
+                        </video>
+                    @endif
                 </div>
 
                 <div class="demo-caption mt-6 pt-5 text-sm text-[#8CA1B6]">
