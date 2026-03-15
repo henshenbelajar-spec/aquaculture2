@@ -290,22 +290,22 @@
     <main id="main-content">
 
         <!-- Hero Section -->
-        <section class="relative w-full overflow-hidden flex flex-col items-center min-h-[90vh] lg:min-h-screen">
+        <section class="hero-scene relative w-full overflow-hidden flex flex-col items-center min-h-[90vh] lg:min-h-screen">
 
             <!-- Grid Background (hero only) - fades out at 65% height -->
-            <div class="absolute inset-0 bg-grid pointer-events-none z-0"
+            <div class="hero-grid-layer absolute inset-0 bg-grid pointer-events-none z-0"
                 style="mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 65%, transparent 100%);
                     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 5%, black 65%, transparent 100%);
                     opacity: 0.5;">
             </div>
 
             <!-- Global glow behind heading (Pai Joki style) -->
-            <div class="absolute top-[35%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] pointer-events-none z-0"
+            <div class="hero-aura absolute top-[35%] left-1/2 w-[700px] h-[400px] pointer-events-none z-0"
                 style="background: radial-gradient(ellipse at center, rgba(0,100,240,0.40) 0%, rgba(0,240,255,0.15) 40%, transparent 70%); filter: blur(60px);">
             </div>
 
             <!-- Floating Bubbles -->
-            <div class="absolute inset-0 overflow-hidden pointer-events-none z-0" id="bubbles-container">
+            <div class="hero-bubbles absolute inset-0 overflow-hidden pointer-events-none z-0" id="bubbles-container">
                 <div class="bubble"
                     style="width:12px;height:12px;left:10%;bottom:-50px;animation-duration:9s;animation-delay:0s;">
                 </div>
@@ -385,20 +385,19 @@
                 <div
                     class="flex-1 relative w-full reveal-up reveal-delay-200 flex justify-center lg:justify-end mt-10 lg:mt-0">
                     <div
-                        class="relative w-full max-w-[480px] aspect-[4/5] lg:aspect-square flex items-center justify-center tilt-image-container">
+                        class="hero-visual-shell relative w-full max-w-[480px] aspect-square flex items-center justify-center tilt-image-container">
                         <!-- Decorative rings -->
                         <div
-                            class="absolute inset-0 border border-[#00F0FF]/20 rounded-full animate-[spin_20s_linear_infinite]">
+                            class="hero-orbit hero-orbit--outer absolute inset-0">
                         </div>
                         <div
-                            class="absolute inset-8 border border-white/10 rounded-full animate-[spin_15s_linear_infinite_reverse]">
+                            class="hero-orbit hero-orbit--inner absolute inset-8">
                         </div>
-                        <div class="w-full h-full p-4 relative z-10 tilt-image"
-                            style="animation: float 6s ease-in-out infinite;">
+                        <div class="hero-visual-frame w-full h-full p-0 relative z-10 tilt-image">
                             <img src="{{ asset('images/aqua_sensor.png') }}"
                                 alt="AquaSmart underwater IoT sensor buoy" width="480" height="480"
                                 fetchpriority="high"
-                                class="w-full h-full object-contain drop-shadow-[0_20px_50px_rgba(0,240,255,0.3)]" />
+                                class="hero-visual-image w-full h-full object-cover drop-shadow-[0_20px_50px_rgba(0,240,255,0.3)]" />
                         </div>
                     </div>
                 </div>
@@ -423,6 +422,8 @@
                         class="feature-card feature-card--sensor float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-100 glow-border">
                         <div class="feature-card__mesh" aria-hidden="true"></div>
                         <div class="feature-card__grid" aria-hidden="true"></div>
+                        <div class="feature-card__wing" aria-hidden="true"></div>
+                        <div class="feature-card__pulse" aria-hidden="true"></div>
                         <div class="feature-card__ghost" aria-hidden="true">
                             <svg class="w-24 h-24 text-[#00F0FF]" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" aria-hidden="true">
@@ -482,6 +483,8 @@
                         class="feature-card feature-card--automation float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-200">
                         <div class="feature-card__mesh" aria-hidden="true"></div>
                         <div class="feature-card__grid" aria-hidden="true"></div>
+                        <div class="feature-card__wing" aria-hidden="true"></div>
+                        <div class="feature-card__pulse" aria-hidden="true"></div>
                         <div class="feature-card__ghost" aria-hidden="true">
                             <svg class="w-24 h-24 text-[#00F0FF]" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" aria-hidden="true">
@@ -541,6 +544,8 @@
                         class="feature-card feature-card--analytics float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-300 glow-border">
                         <div class="feature-card__mesh" aria-hidden="true"></div>
                         <div class="feature-card__grid" aria-hidden="true"></div>
+                        <div class="feature-card__wing" aria-hidden="true"></div>
+                        <div class="feature-card__pulse" aria-hidden="true"></div>
                         <div class="feature-card__ghost" aria-hidden="true">
                             <svg class="w-24 h-24 text-[#00F0FF]" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" aria-hidden="true">
@@ -718,8 +723,8 @@
         <section id="biometrics" class="w-full py-24 z-10 relative overflow-hidden">
             <div class="absolute inset-x-0 top-24 h-[420px] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.08),transparent_62%)] pointer-events-none"
                 aria-hidden="true"></div>
-            <div class="max-w-7xl mx-auto px-6 md:px-12 relative">
-                <div class="dashboard-showcase reveal-up">
+            <div class="dashboard-showcase reveal-up">
+                <div class="dashboard-showcase-inner max-w-7xl mx-auto px-6 md:px-12 relative">
                     <div class="dashboard-showcase-grid grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-14 items-center p-6 md:p-8 xl:p-10">
                         <div class="dashboard-board p-6 md:p-7 reveal-up reveal-delay-100">
                             <div class="dashboard-metric-glow" aria-hidden="true"></div>

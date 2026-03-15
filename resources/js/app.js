@@ -54,6 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. Premium hover tracking for cards on pointer devices
     const floatCards = document.querySelectorAll('.float-card');
+    const featureCards = document.querySelectorAll('.feature-card');
+    const heroScene = document.querySelector('.hero-scene');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     const coarsePointer = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
@@ -63,6 +65,19 @@ document.addEventListener("DOMContentLoaded", () => {
         card.style.setProperty('--pointer-y', '50%');
         card.style.setProperty('--card-rotate-x', '0deg');
         card.style.setProperty('--card-rotate-y', '0deg');
+    };
+
+    const triggerFeatureGlow = (card) => {
+        if (!card) return;
+
+        card.classList.remove('flash-glow');
+        void card.offsetWidth;
+        card.classList.add('flash-glow');
+
+        clearTimeout(card._featureGlowTimeout);
+        card._featureGlowTimeout = window.setTimeout(() => {
+            card.classList.remove('flash-glow');
+        }, 850);
     };
 
     if (supportsHover && !prefersReducedMotion) {
@@ -96,12 +111,54 @@ document.addEventListener("DOMContentLoaded", () => {
             card.addEventListener('focusin', () => card.classList.add('is-active'));
             card.addEventListener('focusout', () => card.classList.remove('is-active'));
         });
+
+        featureCards.forEach(card => {
+            card.addEventListener('mouseenter', () => triggerFeatureGlow(card));
+        });
+    }
+
+    if (heroScene && supportsHover && !prefersReducedMotion) {
+        let heroFrame = null;
+
+        const resetHeroDrift = () => {
+            heroScene.style.setProperty('--hero-drift-x', '0px');
+            heroScene.style.setProperty('--hero-drift-y', '0px');
+        };
+
+        heroScene.addEventListener('mousemove', (event) => {
+            const rect = heroScene.getBoundingClientRect();
+            const offsetX = ((event.clientX - rect.left) / rect.width - 0.5) * 20;
+            const offsetY = ((event.clientY - rect.top) / rect.height - 0.5) * 16;
+
+            if (heroFrame) cancelAnimationFrame(heroFrame);
+            heroFrame = requestAnimationFrame(() => {
+                heroScene.style.setProperty('--hero-drift-x', `${offsetX.toFixed(2)}px`);
+                heroScene.style.setProperty('--hero-drift-y', `${offsetY.toFixed(2)}px`);
+            });
+        });
+
+        heroScene.addEventListener('mouseleave', () => {
+            if (heroFrame) cancelAnimationFrame(heroFrame);
+            resetHeroDrift();
+        });
     }
 
     // 4. Mobile touch stay-active for float-cards
     if (coarsePointer) {
         floatCards.forEach(card => {
             card.addEventListener('click', function() {
+                if (this.classList.contains('feature-card')) {
+                    this.classList.add('is-active');
+                    triggerFeatureGlow(this);
+
+                    clearTimeout(this._mobileActiveTimeout);
+                    this._mobileActiveTimeout = window.setTimeout(() => {
+                        this.classList.remove('is-active');
+                    }, 700);
+
+                    return;
+                }
+
                 floatCards.forEach(c => {
                     if (c !== this) c.classList.remove('is-active');
                 });
