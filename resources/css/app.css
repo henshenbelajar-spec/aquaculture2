@@ -706,6 +706,252 @@
     opacity: 1;
   }
 
+  .ocean-band {
+    --ocean-tint: rgba(94, 186, 224, 0.12);
+    --ocean-haze: rgba(255, 255, 255, 0.08);
+    --ocean-particle: rgba(221, 242, 255, 0.48);
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background:
+      linear-gradient(180deg, rgba(5, 18, 31, 0) 0%, rgba(10, 28, 44, 0.16) 36%, rgba(7, 17, 33, 0) 100%);
+  }
+
+  .ocean-band__content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ocean-band__layers {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .ocean-band__layer {
+    position: absolute;
+    inset: -8%;
+    pointer-events: none;
+  }
+
+  .ocean-band__layer--glow {
+    background:
+      radial-gradient(circle at 16% 30%, var(--ocean-haze), transparent 18%),
+      radial-gradient(circle at 78% 18%, var(--ocean-tint), transparent 22%),
+      radial-gradient(circle at 52% 85%, rgba(73, 179, 220, 0.10), transparent 26%);
+    filter: blur(12px);
+    opacity: 0.82;
+    animation: ocean-glow-drift 24s ease-in-out infinite alternate;
+  }
+
+  .ocean-band__layer--flow {
+    inset: 6% -10%;
+    background:
+      repeating-linear-gradient(
+        102deg,
+        transparent 0 8%,
+        rgba(255, 255, 255, 0.025) 8.3% 8.9%,
+        transparent 9.2% 16%
+      ),
+      linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.03) 48%, transparent 90%);
+    mix-blend-mode: screen;
+    mask-image: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.92) 18%, rgba(0, 0, 0, 0.92) 82%, transparent);
+    opacity: 0.24;
+    animation: ocean-current-shift 20s linear infinite;
+  }
+
+  .ocean-band__layer--motes {
+    inset: 0;
+    background-image:
+      radial-gradient(circle, var(--ocean-particle) 0 1.2px, transparent 1.7px),
+      radial-gradient(circle, rgba(190, 231, 249, 0.34) 0 1px, transparent 1.5px);
+    background-size: 180px 180px, 260px 260px;
+    background-position: 0 0, 80px 120px;
+    opacity: 0.18;
+    animation: ocean-motes-rise 30s linear infinite;
+  }
+
+  .ocean-band__layer--rings {
+    background:
+      radial-gradient(circle at 18% 72%, transparent 3.5rem, rgba(188, 230, 247, 0.14) 3.58rem, transparent 4rem),
+      radial-gradient(circle at 82% 22%, transparent 4.2rem, rgba(255, 255, 255, 0.10) 4.28rem, transparent 4.7rem);
+    opacity: 0.54;
+    animation: ocean-rings-breathe 18s ease-in-out infinite;
+  }
+
+  .ocean-band--currents {
+    --ocean-tint: rgba(84, 200, 214, 0.14);
+    --ocean-haze: rgba(255, 255, 255, 0.06);
+    --ocean-particle: rgba(208, 245, 248, 0.56);
+  }
+
+  .ocean-band--currents .ocean-band__layer--flow {
+    background:
+      repeating-linear-gradient(
+        104deg,
+        transparent 0 7%,
+        rgba(208, 244, 250, 0.09) 7.3% 7.9%,
+        transparent 8.3% 15%
+      ),
+      linear-gradient(180deg, transparent, rgba(132, 218, 239, 0.06) 52%, transparent 92%);
+    opacity: 0.28;
+  }
+
+  .ocean-band--clarity {
+    --ocean-tint: rgba(113, 180, 220, 0.16);
+    --ocean-haze: rgba(255, 255, 255, 0.09);
+    --ocean-particle: rgba(225, 244, 255, 0.42);
+  }
+
+  .ocean-band--clarity .ocean-band__layer--flow {
+    background:
+      repeating-linear-gradient(
+        116deg,
+        transparent 0 10%,
+        rgba(255, 255, 255, 0.08) 10.4% 10.9%,
+        transparent 11.3% 18%
+      ),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 68%);
+    opacity: 0.26;
+  }
+
+  .ocean-band--depth {
+    --ocean-tint: rgba(74, 148, 208, 0.16);
+    --ocean-haze: rgba(255, 255, 255, 0.05);
+    --ocean-particle: rgba(205, 234, 255, 0.34);
+  }
+
+  .ocean-band--depth::before {
+    content: '';
+    position: absolute;
+    inset: 8% 0 12%;
+    background:
+      linear-gradient(90deg, transparent 0 12%, rgba(255, 255, 255, 0.04) 20%, transparent 28%),
+      linear-gradient(90deg, transparent 32%, rgba(111, 205, 238, 0.06) 42%, transparent 52%),
+      linear-gradient(90deg, transparent 62%, rgba(255, 255, 255, 0.03) 72%, transparent 82%);
+    mask-image: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.92) 20%, rgba(0, 0, 0, 0.92) 84%, transparent);
+    opacity: 0.58;
+    animation: depth-beams 18s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+
+  .ocean-band--depth .ocean-band__layer--flow {
+    background:
+      repeating-linear-gradient(
+        96deg,
+        transparent 0 13%,
+        rgba(167, 223, 246, 0.06) 13.3% 13.8%,
+        transparent 14.2% 23%
+      );
+    opacity: 0.18;
+  }
+
+  .ocean-band--surface {
+    --ocean-tint: rgba(81, 186, 224, 0.10);
+    --ocean-haze: rgba(255, 255, 255, 0.18);
+    --ocean-particle: rgba(167, 214, 233, 0.28);
+  }
+
+  .ocean-band--surface .ocean-band__layer--glow {
+    filter: blur(18px);
+    opacity: 0.78;
+  }
+
+  .ocean-band--surface .ocean-band__layer--flow {
+    background:
+      repeating-linear-gradient(
+        112deg,
+        transparent 0 11%,
+        rgba(255, 255, 255, 0.22) 11.4% 11.9%,
+        transparent 12.3% 18%
+      ),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.16), transparent 70%);
+    mix-blend-mode: soft-light;
+    opacity: 0.34;
+  }
+
+  .ocean-band--tide {
+    --ocean-tint: rgba(92, 182, 227, 0.12);
+    --ocean-haze: rgba(255, 255, 255, 0.07);
+    --ocean-particle: rgba(221, 244, 255, 0.32);
+  }
+
+  .ocean-band--tide .ocean-band__layer--flow {
+    inset: 12% -8%;
+    background:
+      repeating-linear-gradient(
+        109deg,
+        transparent 0 14%,
+        rgba(211, 240, 251, 0.06) 14.5% 15%,
+        transparent 15.5% 24%
+      );
+    opacity: 0.18;
+  }
+
+  .clarity-panel {
+    border-color: rgba(190, 229, 245, 0.12);
+    background:
+      linear-gradient(180deg, rgba(11, 26, 42, 0.74), rgba(7, 17, 31, 0.92));
+    box-shadow:
+      0 34px 70px -46px rgba(2, 12, 24, 0.88),
+      0 14px 28px -24px rgba(104, 190, 225, 0.18),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .clarity-panel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 30%),
+      radial-gradient(circle at 12% 16%, rgba(184, 237, 251, 0.10), transparent 26%);
+    pointer-events: none;
+  }
+
+  .scale-visual {
+    border-color: rgba(191, 229, 243, 0.12);
+    box-shadow:
+      0 40px 76px -48px rgba(3, 12, 24, 0.9),
+      0 12px 32px -24px rgba(88, 176, 214, 0.16);
+  }
+
+  .scale-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 24%),
+      radial-gradient(circle at 78% 18%, rgba(164, 230, 246, 0.08), transparent 26%);
+    pointer-events: none;
+  }
+
+  .tide-cta {
+    border-color: rgba(176, 220, 239, 0.16);
+    background:
+      linear-gradient(180deg, rgba(14, 30, 45, 0.82), rgba(8, 18, 31, 0.94)),
+      radial-gradient(circle at 50% 0%, rgba(206, 241, 255, 0.10), transparent 34%),
+      radial-gradient(circle at 18% 100%, rgba(86, 180, 219, 0.08), transparent 26%);
+    box-shadow:
+      0 36px 72px -54px rgba(3, 12, 24, 0.88),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .tide-cta::before {
+    content: '';
+    position: absolute;
+    inset: auto 10% 1.35rem;
+    height: 7rem;
+    border-radius: 999px 999px 0 0;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 68%),
+      radial-gradient(circle at 50% 0%, rgba(130, 215, 241, 0.24), transparent 60%);
+    opacity: 0.78;
+    filter: blur(14px);
+    animation: tide-sheen 8s ease-in-out infinite;
+    pointer-events: none;
+  }
+
   .dashboard-showcase {
     position: relative;
     overflow: hidden;
@@ -714,11 +960,11 @@
     border-bottom: 1px solid rgba(206, 233, 244, 0.18);
     background:
       radial-gradient(circle at 0% 0%, rgba(255, 255, 255, 0.96), transparent 24%),
-      radial-gradient(circle at 100% 18%, rgba(133, 224, 255, 0.24), transparent 28%),
-      linear-gradient(135deg, rgba(249, 252, 255, 0.99), rgba(232, 244, 250, 0.96) 42%, rgba(205, 231, 242, 0.88));
+      radial-gradient(circle at 100% 18%, rgba(133, 224, 255, 0.18), transparent 28%),
+      linear-gradient(135deg, rgba(250, 253, 255, 0.99), rgba(239, 248, 252, 0.97) 42%, rgba(219, 237, 245, 0.9));
     box-shadow:
-      0 54px 110px -82px rgba(2, 12, 24, 0.88),
-      0 22px 54px -38px rgba(78, 177, 220, 0.26),
+      0 48px 96px -82px rgba(2, 12, 24, 0.82),
+      0 18px 44px -38px rgba(78, 177, 220, 0.20),
       inset 0 1px 0 rgba(255, 255, 255, 0.92);
   }
 
@@ -1010,9 +1256,92 @@
   }
 
   @media (max-width: 768px) {
+    .ocean-band__layer--glow {
+      opacity: 0.64;
+    }
+
+    .ocean-band__layer--flow {
+      opacity: 0.18;
+    }
+
+    .ocean-band__layer--rings {
+      opacity: 0.32;
+    }
+
     .dashboard-showcase-inner {
       padding-left: 1rem;
       padding-right: 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ocean-band__layer,
+    .ocean-band--depth::before,
+    .tide-cta::before {
+      animation: none !important;
+    }
+  }
+
+  @keyframes ocean-glow-drift {
+    0% {
+      transform: translate3d(-2%, -1%, 0) scale(0.98);
+    }
+    100% {
+      transform: translate3d(2%, 1%, 0) scale(1.03);
+    }
+  }
+
+  @keyframes ocean-current-shift {
+    0% {
+      transform: translate3d(-4%, 0, 0);
+    }
+    50% {
+      transform: translate3d(1.5%, -1.5%, 0);
+    }
+    100% {
+      transform: translate3d(5%, 1.5%, 0);
+    }
+  }
+
+  @keyframes ocean-motes-rise {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-140px);
+    }
+  }
+
+  @keyframes ocean-rings-breathe {
+    0%, 100% {
+      transform: scale(0.98);
+      opacity: 0.34;
+    }
+    50% {
+      transform: scale(1.03);
+      opacity: 0.58;
+    }
+  }
+
+  @keyframes depth-beams {
+    0% {
+      transform: translateX(-2%);
+      opacity: 0.42;
+    }
+    100% {
+      transform: translateX(2%);
+      opacity: 0.62;
+    }
+  }
+
+  @keyframes tide-sheen {
+    0%, 100% {
+      transform: translateY(0) scaleX(0.98);
+      opacity: 0.62;
+    }
+    50% {
+      transform: translateY(-8px) scaleX(1.04);
+      opacity: 0.84;
     }
   }
 
