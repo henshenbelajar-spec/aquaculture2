@@ -367,7 +367,7 @@
                             class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-[#00F0FF] to-[#44A2F0] text-[#071121] font-bold text-base hover:scale-105 transition-all duration-300 shadow-[0_0_25px_rgba(0,240,255,0.5)] hover:shadow-[0_0_40px_rgba(0,240,255,0.7)] text-center">
                             Explore Ecosystem
                         </a>
-                        <a href="#"
+                        <a href="{{ route('demo') }}"
                             class="w-full sm:w-auto px-8 py-4 rounded-full glass-panel border border-[#00F0FF]/30 text-white font-medium text-base hover:bg-[#00F0FF]/10 transition-all duration-300 flex items-center justify-center gap-2">
                             <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
