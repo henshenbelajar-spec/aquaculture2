@@ -41,11 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Add the visible class to trigger the animation
                 entry.target.classList.add('is-visible');
-                
-                // Optionally stop observing once revealed
-                // observer.unobserve(entry.target); 
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
@@ -80,37 +77,39 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 850);
     };
 
-    if (supportsHover && !prefersReducedMotion) {
-        floatCards.forEach(card => {
-            let frameId = null;
+    const attachFloatCardMotion = (card) => {
+        let frameId = null;
 
-            const updateCardMotion = (event) => {
-                const rect = card.getBoundingClientRect();
-                const x = clamp(((event.clientX - rect.left) / rect.width) * 100, 0, 100);
-                const y = clamp(((event.clientY - rect.top) / rect.height) * 100, 0, 100);
-                const rotateX = clamp((50 - y) / 6, -7, 7);
-                const rotateY = clamp((x - 50) / 7, -7, 7);
+        const updateCardMotion = (event) => {
+            const rect = card.getBoundingClientRect();
+            const x = clamp(((event.clientX - rect.left) / rect.width) * 100, 0, 100);
+            const y = clamp(((event.clientY - rect.top) / rect.height) * 100, 0, 100);
+            const rotateX = clamp((50 - y) / 6, -7, 7);
+            const rotateY = clamp((x - 50) / 7, -7, 7);
 
-                frameId = requestAnimationFrame(() => {
-                    card.style.setProperty('--pointer-x', `${x}%`);
-                    card.style.setProperty('--pointer-y', `${y}%`);
-                    card.style.setProperty('--card-rotate-x', `${rotateX}deg`);
-                    card.style.setProperty('--card-rotate-y', `${rotateY}deg`);
-                });
-            };
-
-            card.addEventListener('mouseenter', resetCardMotion.bind(null, card));
-            card.addEventListener('mousemove', (event) => {
-                if (frameId) cancelAnimationFrame(frameId);
-                updateCardMotion(event);
+            frameId = requestAnimationFrame(() => {
+                card.style.setProperty('--pointer-x', `${x}%`);
+                card.style.setProperty('--pointer-y', `${y}%`);
+                card.style.setProperty('--card-rotate-x', `${rotateX}deg`);
+                card.style.setProperty('--card-rotate-y', `${rotateY}deg`);
             });
-            card.addEventListener('mouseleave', () => {
-                if (frameId) cancelAnimationFrame(frameId);
-                resetCardMotion(card);
-            });
-            card.addEventListener('focusin', () => card.classList.add('is-active'));
-            card.addEventListener('focusout', () => card.classList.remove('is-active'));
+        };
+
+        card.addEventListener('mouseenter', () => resetCardMotion(card));
+        card.addEventListener('mousemove', (event) => {
+            if (frameId) cancelAnimationFrame(frameId);
+            updateCardMotion(event);
         });
+        card.addEventListener('mouseleave', () => {
+            if (frameId) cancelAnimationFrame(frameId);
+            resetCardMotion(card);
+        });
+        card.addEventListener('focusin', () => card.classList.add('is-active'));
+        card.addEventListener('focusout', () => card.classList.remove('is-active'));
+    };
+
+    if (supportsHover && !prefersReducedMotion) {
+        floatCards.forEach(attachFloatCardMotion);
 
         featureCards.forEach(card => {
             card.addEventListener('mouseenter', () => triggerFeatureGlow(card));

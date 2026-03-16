@@ -336,6 +336,41 @@
                     style="width:9px;height:9px;left:55%;bottom:-50px;animation-duration:9s;animation-delay:6s;"></div>
             </div>
 
+            <div class="hero-drifters" aria-hidden="true">
+                <div class="hero-drifter hero-drifter--fish hero-drifter--ltr hero-drifter--bob hero-drifter--fish-one">
+                    <svg viewBox="0 0 64 64" fill="none">
+                        <path d="M10 32C18 20 31 18 43 22L54 14V50L43 42C31 46 18 44 10 32Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+                        <path d="M16 32H30" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                        <circle cx="38" cy="28" r="1.8" fill="currentColor"/>
+                    </svg>
+                </div>
+                <div class="hero-drifter hero-drifter--fish hero-drifter--rtl hero-drifter--float hero-drifter--fish-two">
+                    <svg viewBox="0 0 64 64" fill="none">
+                        <path d="M10 32C18 20 31 18 43 22L54 14V50L43 42C31 46 18 44 10 32Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
+                        <path d="M16 32H30" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+                        <circle cx="38" cy="28" r="1.8" fill="currentColor"/>
+                    </svg>
+                </div>
+                <div class="hero-drifter hero-drifter--ammonia hero-drifter--ltr hero-drifter--bob hero-drifter--ammonia-one">
+                    <svg viewBox="0 0 56 56" fill="none">
+                        <circle cx="28" cy="28" r="4.5" stroke="currentColor" stroke-width="2.1"/>
+                        <circle cx="16" cy="17" r="3.2" stroke="currentColor" stroke-width="2.1"/>
+                        <circle cx="41" cy="19" r="3.2" stroke="currentColor" stroke-width="2.1"/>
+                        <circle cx="23" cy="42" r="3.2" stroke="currentColor" stroke-width="2.1"/>
+                        <path d="M24 25L18.5 20.5M32 25L38 21M27 32L24 38" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="hero-drifter hero-drifter--ammonia hero-drifter--rtl hero-drifter--float hero-drifter--ammonia-two">
+                    <svg viewBox="0 0 56 56" fill="none">
+                        <circle cx="28" cy="28" r="4.5" stroke="currentColor" stroke-width="2.1"/>
+                        <circle cx="16" cy="17" r="3.2" stroke="currentColor" stroke-width="2.1"/>
+                        <circle cx="41" cy="19" r="3.2" stroke="currentColor" stroke-width="2.1"/>
+                        <circle cx="23" cy="42" r="3.2" stroke="currentColor" stroke-width="2.1"/>
+                        <path d="M24 25L18.5 20.5M32 25L38 21M27 32L24 38" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
+
             <div
                 class="relative w-full max-w-7xl mx-auto px-6 md:px-12 pt-32 pb-20 md:pt-44 md:pb-28 lg:pt-52 lg:pb-36 flex flex-col lg:flex-row items-center justify-between gap-16 z-10">
 
@@ -421,7 +456,6 @@
                     <div
                         class="feature-card feature-card--sensor float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-100 glow-border">
                         <div class="feature-card__mesh" aria-hidden="true"></div>
-                        <div class="feature-card__grid" aria-hidden="true"></div>
                         <div class="feature-card__wing" aria-hidden="true"></div>
                         <div class="feature-card__pulse" aria-hidden="true"></div>
                         <div class="feature-card__ghost" aria-hidden="true">
@@ -447,7 +481,7 @@
                             <span class="feature-card__eyebrow-dot" aria-hidden="true"></span>
                             Sensor Mesh
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Live Water Quality</h3>
+                        <h3 class="feature-card__title text-xl font-bold text-white mb-3">Live Water Quality</h3>
                         <p class="feature-card__desc text-sm leading-relaxed mb-6 flex-1">
                             Continuously monitor pH, Dissolved Oxygen (DO), salinity, and turbidity with our
                             military-grade submersive sensors.
@@ -473,16 +507,12 @@
                                 <span class="feature-card__meta-value">99.8%</span>
                             </div>
                         </div>
-                        <div class="mt-4 w-full h-[1px] bg-gradient-to-r from-white/10 via-[#00F0FF]/14 to-transparent"
-                            aria-hidden="true">
-                        </div>
                     </div>
 
                     <!-- Feature Card 2 -->
                     <div
                         class="feature-card feature-card--automation float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-200">
                         <div class="feature-card__mesh" aria-hidden="true"></div>
-                        <div class="feature-card__grid" aria-hidden="true"></div>
                         <div class="feature-card__wing" aria-hidden="true"></div>
                         <div class="feature-card__pulse" aria-hidden="true"></div>
                         <div class="feature-card__ghost" aria-hidden="true">
@@ -508,7 +538,7 @@
                             <span class="feature-card__eyebrow-dot" aria-hidden="true"></span>
                             Control Layer
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Smart Automation</h3>
+                        <h3 class="feature-card__title text-xl font-bold text-white mb-3">Smart Automation</h3>
                         <p class="feature-card__desc text-sm leading-relaxed mb-6 flex-1">
                             Connect IoT aerators and automated feeders. Trigger actions based on real-time environmental
                             data parameters.
@@ -534,16 +564,12 @@
                                 <span class="feature-card__meta-value">0.8s</span>
                             </div>
                         </div>
-                        <div class="mt-4 w-full h-[1px] bg-gradient-to-r from-white/10 via-[#44A2F0]/14 to-transparent"
-                            aria-hidden="true">
-                        </div>
                     </div>
 
                     <!-- Feature Card 3 -->
                     <div
                         class="feature-card feature-card--analytics float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-300 glow-border">
                         <div class="feature-card__mesh" aria-hidden="true"></div>
-                        <div class="feature-card__grid" aria-hidden="true"></div>
                         <div class="feature-card__wing" aria-hidden="true"></div>
                         <div class="feature-card__pulse" aria-hidden="true"></div>
                         <div class="feature-card__ghost" aria-hidden="true">
@@ -571,7 +597,7 @@
                             <span class="feature-card__eyebrow-dot" aria-hidden="true"></span>
                             Forecast Engine
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-3">Predictive Analytics</h3>
+                        <h3 class="feature-card__title text-xl font-bold text-white mb-3">Predictive Analytics</h3>
                         <p class="feature-card__desc text-sm leading-relaxed mb-6 flex-1">
                             Leverage AI models to forecast biomass growth, disease risk, and energy consumption across
                             your farming modules.
@@ -596,9 +622,6 @@
                                 <span class="feature-card__meta-label">Model Cert.</span>
                                 <span class="feature-card__meta-value">A97</span>
                             </div>
-                        </div>
-                        <div class="mt-4 w-full h-[1px] bg-gradient-to-r from-white/10 via-[#00F0FF]/14 to-transparent"
-                            aria-hidden="true">
                         </div>
                     </div>
                 </div>
@@ -807,7 +830,7 @@
                                 Real-time Data
                             </div>
 
-                            <h2 class="mt-6 text-4xl md:text-6xl font-bold tracking-tight text-[#132742] text-balance">Monitoring Dashboard</h2>
+                            <h2 class="dashboard-copy-title mt-6 text-4xl md:text-6xl font-bold tracking-tight text-[#103455] text-balance">Monitoring Dashboard</h2>
                             <div class="dashboard-copy-wave" aria-hidden="true">
                                 <div class="dashboard-copy-wave-burst">
                                     <svg class="dashboard-wave-icon" fill="none" viewBox="0 0 32 32">
@@ -818,7 +841,7 @@
                                 </div>
                                 <div class="dashboard-copy-wave-line"></div>
                             </div>
-                            <p class="mt-6 text-lg md:text-xl leading-relaxed text-[#4F6982]">
+                            <p class="dashboard-copy-text mt-6 text-lg md:text-xl leading-relaxed text-[#4C6E8A]">
                                 Access detailed pond intelligence from anywhere. AquaSmart visualizes live telemetry,
                                 historical movement, and automated response logic in one interface that still feels calm,
                                 clear, and premium.
@@ -832,8 +855,8 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <h3 class="text-2xl font-bold text-[#142743]">Historical Trend Analytics</h3>
-                                        <p class="mt-2 text-base leading-relaxed text-[#5A728A]">Export capability and high-detail visual graphs storing up to one year of parameter history per pond.</p>
+                                        <h3 class="dashboard-info-title text-2xl font-bold text-[#142743]">Historical Trend Analytics</h3>
+                                        <p class="dashboard-info-text mt-2 text-base leading-relaxed text-[#5A728A]">Export capability and high-detail visual graphs storing up to one year of parameter history per pond.</p>
                                     </div>
                                 </div>
 
@@ -844,8 +867,8 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <h3 class="text-2xl font-bold text-[#142743]">Custom Alert Thresholds</h3>
-                                        <p class="mt-2 text-base leading-relaxed text-[#5A728A]">Get lightning-fast notifications via SMS, Email, or WhatsApp when critical metrics drop below safe levels.</p>
+                                        <h3 class="dashboard-info-title text-2xl font-bold text-[#142743]">Custom Alert Thresholds</h3>
+                                        <p class="dashboard-info-text mt-2 text-base leading-relaxed text-[#5A728A]">Get lightning-fast notifications via SMS, Email, or WhatsApp when critical metrics drop below safe levels.</p>
                                     </div>
                                 </div>
 
@@ -856,8 +879,8 @@
                                         </svg>
                                     </div>
                                     <div>
-                                        <h3 class="text-2xl font-bold text-[#142743]">Mobile PWA Ready</h3>
-                                        <p class="mt-2 text-base leading-relaxed text-[#5A728A]">Install the dashboard directly on your phone's home screen and respond to conditions while walking the farm.</p>
+                                        <h3 class="dashboard-info-title text-2xl font-bold text-[#142743]">Mobile PWA Ready</h3>
+                                        <p class="dashboard-info-text mt-2 text-base leading-relaxed text-[#5A728A]">Install the dashboard directly on your phone's home screen and respond to conditions while walking the farm.</p>
                                     </div>
                                 </div>
                             </div>
@@ -873,6 +896,7 @@
                 <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-gradient-to-b from-[#00F0FF]/20 to-transparent blur-3xl rounded-[100%] z-[-1] pointer-events-none"
                     aria-hidden="true"></div>
 
+                <div class="cta-kicker">Farm-ready platform</div>
                 <h2 class="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight drop-shadow-md text-balance">
                     Ready to dive in?</h2>
                 <p class="text-lg text-zinc-300 mb-10 max-w-xl font-light text-pretty">Join the top aquaculture sites
@@ -882,6 +906,20 @@
                     class="px-10 py-5 rounded-full bg-white text-black font-bold text-lg hover:scale-105 transition-transform duration-300 shadow-[0_0_30px_rgba(255,255,255,0.3)]">
                     Start Your Trial
                 </a>
+                <div class="cta-trust-strip">
+                    <div class="cta-trust-item">
+                        <div class="cta-trust-label">Deployment</div>
+                        <div class="cta-trust-value">Fast onboarding</div>
+                    </div>
+                    <div class="cta-trust-item">
+                        <div class="cta-trust-label">Monitoring</div>
+                        <div class="cta-trust-value">24/7 live telemetry</div>
+                    </div>
+                    <div class="cta-trust-item">
+                        <div class="cta-trust-label">Access</div>
+                        <div class="cta-trust-value">Mobile and desktop</div>
+                    </div>
+                </div>
                 <p class="mt-6 text-sm text-zinc-500">No credit card required &bull; Free 14-day evaluation</p>
             </div>
         </section>
@@ -945,25 +983,22 @@
             </div>
 
             <div
-                class="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between text-xs text-zinc-600">
-                <p>&copy; 2026 AquaSmart Technologies. All rights reserved.</p>
-                <nav aria-label="Social links" class="flex gap-4 mt-4 md:mt-0">
+                class="pt-8 border-t border-white/5 flex flex-col md:flex-row items-center md:items-end justify-between gap-4 text-xs text-zinc-600">
+                <div class="text-center md:text-left">
+                    <p>&copy; 2026 AquaSmart Technologies. All rights reserved.</p>
+                    <p class="mt-2 text-[11px] text-zinc-500">
+                        Produced by <span class="text-zinc-300">Virgiawan Habibie</span> and
+                        <span class="text-zinc-300">Juan David Tanesa</span>
+                    </p>
+                </div>
+                <nav aria-label="Social links" class="flex gap-4 mt-2 md:mt-0">
                     <a href="#" class="hover:text-white transition-colors duration-200">Twitter</a>
                     <a href="#" class="hover:text-white transition-colors duration-200">LinkedIn</a>
-                    <a href="#" class="hover:text-[#00F0FF] transition-colors duration-200">GitHub</a>
+                    <a href="#" class="hover:text-[#00F0FF] transition-colors duration-200">GitHub Repo</a>
                 </nav>
             </div>
         </div>
     </footer>
-
-</body>
-
-</html>
-<a href="#" class="hover:text-[#00F0FF] transition-colors duration-200">GitHub</a>
-</nav>
-</div>
-</div>
-</footer>
 
 </body>
 
