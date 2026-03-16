@@ -470,7 +470,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     <!-- Feature Card 1 -->
                     <div
-                        class="feature-card feature-card--sensor float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-100 glow-border">
+                        class="feature-card feature-card--sensor float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-up glow-border">
                         <div class="feature-card__mesh" aria-hidden="true"></div>
                         <div class="feature-card__wing" aria-hidden="true"></div>
                         <div class="feature-card__pulse" aria-hidden="true"></div>
@@ -527,7 +527,7 @@
 
                     <!-- Feature Card 2 -->
                     <div
-                        class="feature-card feature-card--automation float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-200">
+                        class="feature-card feature-card--automation float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-100">
                         <div class="feature-card__mesh" aria-hidden="true"></div>
                         <div class="feature-card__wing" aria-hidden="true"></div>
                         <div class="feature-card__pulse" aria-hidden="true"></div>
@@ -584,7 +584,7 @@
 
                     <!-- Feature Card 3 -->
                     <div
-                        class="feature-card feature-card--analytics float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-300 glow-border">
+                        class="feature-card feature-card--analytics float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-200 glow-border">
                         <div class="feature-card__mesh" aria-hidden="true"></div>
                         <div class="feature-card__wing" aria-hidden="true"></div>
                         <div class="feature-card__pulse" aria-hidden="true"></div>
@@ -647,7 +647,7 @@
         <!-- UI/Dashboard Presentation -->
         <section id="dashboard" class="w-full py-24 z-10">
             <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center gap-16">
-                <div class="flex-1 w-full order-2 lg:order-1 relative reveal-up">
+                <div class="flex-1 w-full order-2 lg:order-1 relative reveal-left">
                     <div
                         class="w-full aspect-[4/3] rounded-3xl overflow-hidden glass-panel border border-white/10 shadow-[0_20px_50px_-20px_rgba(0,240,255,0.4)] relative group cursor-pointer group float-card tilt-image-container">
                         <img src="{{ asset('images/aqua_dashboard.png') }}"
@@ -676,7 +676,7 @@
                     </div>
                 </div>
 
-                <div class="flex-1 order-1 lg:order-2 reveal-up reveal-delay-200">
+                <div class="flex-1 order-1 lg:order-2 reveal-right">
                     <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Deep Context. <br /> <span
                             class="text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] to-[#44A2F0]">Clear
                             Visibility.</span></h2>
@@ -719,7 +719,7 @@
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#154576]/10 to-transparent"
                 aria-hidden="true"></div>
             <div class="max-w-7xl mx-auto px-6 md:px-12 relative flex flex-col lg:flex-row items-center gap-16">
-                <div class="flex-1 reveal-up">
+                <div class="flex-1 reveal-left">
                     <div
                         class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-panel border border-[#44A2F0]/30 text-xs font-semibold text-[#44A2F0] mb-6 uppercase tracking-wider">
                         Infrastructure
@@ -745,7 +745,7 @@
                     </div>
                 </div>
 
-                <div class="flex-1 w-full reveal-up reveal-delay-200">
+                <div class="flex-1 w-full reveal-right">
                     <div
                         class="aspect-square md:aspect-[4/3] w-full rounded-full lg:rounded-[3rem] overflow-hidden border-4 border-white/5 relative float-card">
                         <img src="{{ asset('images/aqua_facility.png') }}" class="w-full h-full object-cover"
@@ -765,7 +765,7 @@
             <div class="dashboard-showcase reveal-up">
                 <div class="dashboard-showcase-inner max-w-7xl mx-auto px-6 md:px-12 relative">
                     <div class="dashboard-showcase-grid grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-14 items-center p-6 md:p-8 xl:p-10">
-                        <div class="dashboard-board p-6 md:p-7 reveal-up reveal-delay-100">
+                        <div class="dashboard-board p-6 md:p-7 reveal-left">
                             <div class="dashboard-metric-glow" aria-hidden="true"></div>
                             <div class="dashboard-water-rings" aria-hidden="true">
                                 <span></span>

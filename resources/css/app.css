@@ -252,17 +252,31 @@
   }
 
   /* Scroll Observer Utilities */
-  .reveal-up {
+  .reveal-up, .reveal-left, .reveal-right {
     opacity: 0;
-    transform: translateY(40px);
     transition:
-      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
   }
 
-  .reveal-up.is-visible {
+  .reveal-up {
+    transform: translateY(40px);
+  }
+
+  .reveal-left {
+    transform: translateX(-60px);
+  }
+
+  .reveal-right {
+    transform: translateX(60px);
+  }
+
+  .reveal-up.is-visible,
+  .reveal-left.is-visible,
+  .reveal-right.is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate(0, 0);
   }
 
   .reveal-delay-100 { transition-delay: 100ms; }
@@ -414,15 +428,21 @@
     }
 
     .float-card:hover {
-      --card-lift: -14px;
+      --card-lift: -18px;
       box-shadow:
-        0 42px 80px -40px rgba(3, 8, 18, 0.95),
-        0 30px 60px -38px rgba(0, 240, 255, 0.32),
-        inset 0 1px 0 rgba(255, 255, 255, 0.08);
-      border-color: rgba(0, 240, 255, 0.28);
+        0 48px 90px -40px rgba(3, 8, 18, 0.98),
+        0 35px 70px -38px rgba(0, 240, 255, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      border-color: rgba(0, 240, 255, 0.42);
       background:
-        linear-gradient(180deg, rgba(18, 41, 70, 0.78), rgba(7, 17, 33, 0.92));
-      filter: saturate(1.05);
+        linear-gradient(180deg, rgba(22, 50, 85, 0.85), rgba(7, 17, 33, 0.96));
+      filter: saturate(1.1) brightness(1.1);
+      transform:
+        perspective(1200px)
+        rotateX(var(--card-rotate-x))
+        rotateY(var(--card-rotate-y))
+        translate3d(0, var(--card-lift), 0)
+        scale(1.02);
     }
 
     .float-card:hover::before {
@@ -756,9 +776,9 @@
   @media (hover: hover) and (pointer: fine) {
     .feature-card:hover {
       background:
-        linear-gradient(180deg, rgba(20, 37, 56, 0.9), rgba(8, 18, 33, 0.98)),
-        radial-gradient(circle at 82% 0%, var(--feature-accent), transparent 38%),
-        radial-gradient(circle at 0% 100%, var(--feature-secondary), transparent 44%);
+        linear-gradient(180deg, rgba(25, 48, 72, 0.95), rgba(8, 18, 33, 0.98)),
+        radial-gradient(circle at 82% 0%, var(--feature-accent), transparent 45%),
+        radial-gradient(circle at 0% 100%, var(--feature-secondary), transparent 50%);
     }
 
     .feature-card:hover .feature-card__ghost {

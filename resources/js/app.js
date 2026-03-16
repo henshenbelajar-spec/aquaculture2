@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. Intersection Observer for Scroll Animations
     // Select all elements that should animate in on scroll
-    const revealElements = document.querySelectorAll('.reveal-up');
+    const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
 
     const observerOptions = {
         root: null, // viewport
