@@ -3,30 +3,37 @@ import Lenis from '@studio-freight/lenis';
 
 document.addEventListener("DOMContentLoaded", () => {
     const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const coarsePointer = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    const lowCpuDevice = typeof navigator.hardwareConcurrency === 'number' && navigator.hardwareConcurrency <= 4;
+    const lowMemoryDevice = typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 4;
+    const liteMode = prefersReducedMotion || coarsePointer || lowCpuDevice || lowMemoryDevice;
+    const shouldUseLenis = supportsHover && !liteMode && window.innerWidth >= 1024;
+
+    document.documentElement.classList.toggle('perf-lite', liteMode);
 
     // 1. Initialize Lenis for Smooth Scrolling
-    const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
-        direction: 'vertical',
-        gestureDirection: 'vertical',
-        smooth: true,
-        mouseMultiplier: 1,
-        smoothTouch: false,
-        touchMultiplier: 2,
-        infinite: false,
-    });
+    if (shouldUseLenis) {
+        const lenis = new Lenis({
+            duration: 1.05,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 0.95,
+            smoothTouch: false,
+            touchMultiplier: 1.4,
+            infinite: false,
+        });
 
-    // lenis.on('scroll', (e) => {
-    //     console.log(e)
-    // })
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
 
-    function raf(time) {
-        lenis.raf(time);
         requestAnimationFrame(raf);
     }
-
-    requestAnimationFrame(raf);
 
     // 2. Intersection Observer for Scroll Animations
     // Select all elements that should animate in on scroll
@@ -53,9 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const floatCards = document.querySelectorAll('.float-card');
     const featureCards = document.querySelectorAll('.feature-card');
     const heroScene = document.querySelector('.hero-scene');
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    const coarsePointer = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
     const resetCardMotion = (card) => {
         card.style.setProperty('--pointer-x', '50%');
@@ -108,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.addEventListener('focusout', () => card.classList.remove('is-active'));
     };
 
-    if (supportsHover && !prefersReducedMotion) {
+    if (supportsHover && !liteMode) {
         floatCards.forEach(attachFloatCardMotion);
 
         featureCards.forEach(card => {
@@ -116,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    if (heroScene && supportsHover && !prefersReducedMotion) {
+    if (heroScene && supportsHover && !liteMode) {
         let heroFrame = null;
 
         const resetHeroDrift = () => {

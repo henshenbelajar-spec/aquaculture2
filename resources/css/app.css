@@ -64,6 +64,11 @@
     background-color: var(--color-aqua-dark);
   }
 
+  main > section:not(.hero-scene) {
+    content-visibility: auto;
+    contain-intrinsic-size: 900px;
+  }
+
   .hero-scene {
     --hero-drift-x: 0px;
     --hero-drift-y: 0px;
@@ -112,6 +117,14 @@
   .hero-drifter--fish {
     width: 3.25rem;
     height: 3.25rem;
+  }
+
+  .hero-drifter--fish.hero-drifter--bob {
+    animation-name: hero-fish-drift-ltr, hero-drifter-bob;
+  }
+
+  .hero-drifter--fish.hero-drifter--float {
+    animation-name: hero-fish-drift-rtl, hero-drifter-bob;
   }
 
   .hero-drifter--ammonia {
@@ -242,7 +255,9 @@
   .reveal-up {
     opacity: 0;
     transform: translateY(40px);
-    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition:
+      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .reveal-up.is-visible {
@@ -335,7 +350,8 @@
     box-shadow:
       0 24px 55px -34px rgba(3, 8, 18, 0.95),
       inset 0 1px 0 rgba(255, 255, 255, 0.03);
-    will-change: transform, box-shadow;
+    will-change: auto;
+    contain: paint;
   }
 
   .float-card::before,
@@ -392,6 +408,11 @@
   }
 
   @media (hover: hover) and (pointer: fine) {
+    .float-card:hover,
+    .float-card:focus-within {
+      will-change: transform, box-shadow;
+    }
+
     .float-card:hover {
       --card-lift: -14px;
       box-shadow:
@@ -887,6 +908,7 @@
   .dashboard-board {
     position: relative;
     overflow: hidden;
+    contain: paint;
     border: 1px solid rgba(25, 83, 110, 0.10);
     border-radius: 2rem;
     background:
@@ -914,6 +936,7 @@
   .dashboard-mini-card {
     position: relative;
     overflow: hidden;
+    contain: paint;
     border: 1px solid rgba(23, 85, 114, 0.08);
     border-radius: 1.6rem;
     background:
@@ -950,6 +973,7 @@
   .dashboard-status-card {
     position: relative;
     overflow: hidden;
+    contain: paint;
     border: 1px solid rgba(25, 83, 110, 0.10);
     border-radius: 1.7rem;
     background:
@@ -1091,6 +1115,50 @@
     border-top: 1px solid rgba(18, 89, 120, 0.10);
   }
 
+  @media (max-width: 768px) {
+    body {
+      background-attachment: scroll;
+    }
+
+    .hero-grid-layer {
+      animation-duration: 34s;
+      opacity: 0.3;
+    }
+
+    .hero-aura {
+      animation-duration: 20s;
+    }
+
+    .hero-orbit--outer,
+    .hero-orbit--inner,
+    .hero-visual-shell,
+    .dashboard-board::after,
+    .dashboard-water-rings span,
+    .dashboard-wave-icon path {
+      animation: none !important;
+    }
+  }
+
+  .perf-lite .hero-grid-layer,
+  .perf-lite .hero-orbit--outer,
+  .perf-lite .hero-orbit--inner,
+  .perf-lite .hero-visual-shell,
+  .perf-lite .dashboard-board::after,
+  .perf-lite .dashboard-water-rings span,
+  .perf-lite .dashboard-wave-icon path {
+    animation: none !important;
+  }
+
+  .perf-lite .hero-drifter {
+    animation-play-state: paused;
+    opacity: 0.16;
+  }
+
+  .perf-lite .float-card,
+  .perf-lite .dashboard-mini-card {
+    transition-duration: 0.25s;
+  }
+
   .dashboard-info-title {
     color: #163757;
     letter-spacing: -0.03em;
@@ -1225,6 +1293,20 @@
     }
   }
 
+  @keyframes hero-fish-drift-ltr {
+    0% {
+      transform: translate3d(-12vw, 0, 0) scaleX(-1);
+      opacity: 0;
+    }
+    10%, 82% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate3d(112vw, 0, 0) scaleX(-1);
+      opacity: 0;
+    }
+  }
+
   @keyframes hero-drift-rtl {
     0% {
       transform: translate3d(112vw, 0, 0) scaleX(-1);
@@ -1235,6 +1317,20 @@
     }
     100% {
       transform: translate3d(-12vw, 0, 0) scaleX(-1);
+      opacity: 0;
+    }
+  }
+
+  @keyframes hero-fish-drift-rtl {
+    0% {
+      transform: translate3d(112vw, 0, 0) scaleX(1);
+      opacity: 0;
+    }
+    10%, 82% {
+      opacity: 1;
+    }
+    100% {
+      transform: translate3d(-12vw, 0, 0) scaleX(1);
       opacity: 0;
     }
   }
