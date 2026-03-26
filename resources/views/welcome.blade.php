@@ -127,7 +127,11 @@
                 transition-duration: 0.01ms !important;
             }
 
-            .reveal-up {
+            .reveal-up,
+            .reveal-left,
+            .reveal-right,
+            .reveal-scale,
+            [data-reveal] {
                 opacity: 1 !important;
                 transform: none !important;
             }
@@ -422,7 +426,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     <!-- Feature Card 1 -->
                     <div
-                        class="feature-card feature-card--sensor float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-100 glow-border">
+                        class="feature-card feature-card--sensor float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-left reveal-delay-100 glow-border">
                         <div class="feature-card__mesh" aria-hidden="true"></div>
                         <div class="feature-card__wing" aria-hidden="true"></div>
                         <div class="feature-card__pulse" aria-hidden="true"></div>
@@ -530,7 +534,7 @@
 
                     <!-- Feature Card 3 -->
                     <div
-                        class="feature-card feature-card--analytics float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-300 glow-border">
+                        class="feature-card feature-card--analytics float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-right reveal-delay-300 glow-border">
                         <div class="feature-card__mesh" aria-hidden="true"></div>
                         <div class="feature-card__wing" aria-hidden="true"></div>
                         <div class="feature-card__pulse" aria-hidden="true"></div>

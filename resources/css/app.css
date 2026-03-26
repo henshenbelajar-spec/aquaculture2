@@ -74,8 +74,16 @@
       radial-gradient(circle at 15% 50%, rgba(21, 69, 118, 0.25), transparent 35%),
       radial-gradient(circle at 85% 30%, rgba(68, 162, 240, 0.15), transparent 30%),
       radial-gradient(circle at 50% 100%, rgba(0, 240, 255, 0.05), transparent 40%);
-    background-attachment: fixed;
     background-color: var(--color-aqua-dark);
+  }
+
+  #features,
+  #dashboard,
+  #facility,
+  #biometrics,
+  footer {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 920px;
   }
 
   .hero-scene {
@@ -176,24 +184,51 @@
   }
 
   /* Scroll Observer Utilities */
-  .reveal-up {
+  .reveal-up,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale,
+  [data-reveal] {
     opacity: 0;
-    transform: translateY(40px);
     transition:
-      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity 0.72s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.82s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
   }
 
-  .reveal-up.is-visible {
+  .reveal-up,
+  [data-reveal="up"] {
+    transform: translate3d(0, 36px, 0);
+  }
+
+  .reveal-left,
+  [data-reveal="left"] {
+    transform: translate3d(-40px, 0, 0);
+  }
+
+  .reveal-right,
+  [data-reveal="right"] {
+    transform: translate3d(40px, 0, 0);
+  }
+
+  .reveal-scale,
+  [data-reveal="scale"] {
+    transform: translate3d(0, 24px, 0) scale(0.96);
+  }
+
+  .reveal-up.is-visible,
+  .reveal-left.is-visible,
+  .reveal-right.is-visible,
+  .reveal-scale.is-visible,
+  [data-reveal].is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0) scale(1);
   }
 
-
-  .reveal-delay-100 { transition-delay: 100ms; }
-  .reveal-delay-200 { transition-delay: 200ms; }
-  .reveal-delay-300 { transition-delay: 300ms; }
-  .reveal-delay-400 { transition-delay: 400ms; }
+  .reveal-delay-100 { transition-delay: 90ms; }
+  .reveal-delay-200 { transition-delay: 180ms; }
+  .reveal-delay-300 { transition-delay: 270ms; }
+  .reveal-delay-400 { transition-delay: 360ms; }
   
   /* Premium 3D Tilt Effect for Images */
   .tilt-image-container {
@@ -204,7 +239,7 @@
     transform-style: preserve-3d;
   }
   @media (hover: hover) {
-    .tilt-image-container:hover .tilt-image {
+    html:not(.is-low-motion) .tilt-image-container:hover .tilt-image {
       transform: rotateX(5deg) rotateY(-5deg) scale(1.05);
       box-shadow: 0 30px 60px -15px rgba(0, 240, 255, 0.3);
     }
@@ -225,12 +260,7 @@
     --card-lift: 0px;
     position: relative;
     isolation: isolate;
-    transform:
-      perspective(1200px)
-      rotateX(var(--card-rotate-x))
-      rotateY(var(--card-rotate-y))
-      translate3d(0, var(--card-lift), 0);
-    transform-style: preserve-3d;
+    transform: translate3d(0, var(--card-lift), 0);
     transition:
       transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
       box-shadow 0.55s cubic-bezier(0.16, 1, 0.3, 1),
@@ -240,7 +270,7 @@
     box-shadow:
       0 24px 55px -34px rgba(3, 8, 18, 0.95),
       inset 0 1px 0 rgba(255, 255, 255, 0.03);
-    will-change: transform, box-shadow;
+    will-change: transform;
   }
 
   .float-card::before,
@@ -297,7 +327,7 @@
   }
 
   @media (hover: hover) and (pointer: fine) {
-    .float-card:hover {
+    html:not(.is-low-motion) .float-card:hover {
       --card-lift: -14px;
       box-shadow:
         0 42px 80px -40px rgba(3, 8, 18, 0.95),
@@ -309,17 +339,17 @@
       filter: saturate(1.05);
     }
 
-    .float-card:hover::before {
+    html:not(.is-low-motion) .float-card:hover::before {
       opacity: 1;
       transform: scale(1.04);
     }
 
-    .float-card:hover::after {
+    html:not(.is-low-motion) .float-card:hover::after {
       opacity: 1;
       border-color: rgba(144, 228, 255, 0.16);
     }
 
-    .float-card:hover .inner-block {
+    html:not(.is-low-motion) .float-card:hover .inner-block {
       transform: translateY(-2px);
       border-color: rgba(0, 240, 255, 0.30);
       box-shadow:
@@ -795,19 +825,19 @@
   }
 
   @media (hover: hover) and (pointer: fine) {
-    .feature-card:hover {
+    html:not(.is-low-motion) .feature-card:hover {
       background:
         linear-gradient(180deg, rgba(20, 37, 56, 0.9), rgba(8, 18, 33, 0.98)),
         radial-gradient(circle at 82% 0%, var(--feature-accent), transparent 38%),
         radial-gradient(circle at 0% 100%, var(--feature-secondary), transparent 44%);
     }
 
-    .feature-card:hover .feature-card__ghost {
+    html:not(.is-low-motion) .feature-card:hover .feature-card__ghost {
       opacity: 0.28;
       transform: translate3d(0, -6px, 24px) rotate(-4deg);
     }
 
-    .feature-card:hover .feature-card__icon-shell {
+    html:not(.is-low-motion) .feature-card:hover .feature-card__icon-shell {
       transform: translate3d(0, -4px, 18px);
       border-color: rgba(255, 255, 255, 0.14);
       box-shadow:
@@ -815,16 +845,16 @@
         inset 0 1px 0 rgba(255, 255, 255, 0.16);
     }
 
-    .feature-card:hover .feature-card__badge {
+    html:not(.is-low-motion) .feature-card:hover .feature-card__badge {
       border-color: rgba(255, 255, 255, 0.12);
       background: rgba(10, 21, 36, 0.72);
     }
 
-    .feature-card:hover .feature-card__meter > span {
+    html:not(.is-low-motion) .feature-card:hover .feature-card__meter > span {
       box-shadow: 0 0 30px -6px var(--feature-accent-strong);
     }
 
-    .feature-card:hover .feature-card__tag {
+    html:not(.is-low-motion) .feature-card:hover .feature-card__tag {
       background: rgba(255, 255, 255, 0.07);
     }
   }
@@ -842,6 +872,23 @@
   }
 
   @media (max-width: 768px) {
+    .reveal-up,
+    .reveal-left,
+    .reveal-right,
+    .reveal-scale,
+    [data-reveal] {
+      transition-duration: 0.56s;
+    }
+
+    .reveal-up,
+    .reveal-left,
+    .reveal-right,
+    [data-reveal="up"],
+    [data-reveal="left"],
+    [data-reveal="right"] {
+      transform: translate3d(0, 22px, 0);
+    }
+
     .feature-card {
       min-height: 0;
     }
@@ -867,6 +914,29 @@
   .float-card:focus-within::before,
   .float-card:focus-within::after {
     opacity: 1;
+  }
+
+  html.is-low-motion .hero-grid-layer,
+  html.is-low-motion .hero-aura,
+  html.is-low-motion .hero-visual-shell,
+  html.is-low-motion .hero-orbit--outer,
+  html.is-low-motion .hero-orbit--inner,
+  html.is-low-motion .hero-visual-frame,
+  html.is-low-motion .dashboard-board::after,
+  html.is-low-motion .dashboard-water-rings span,
+  html.is-low-motion .dashboard-wave-mark span,
+  html.is-low-motion .dashboard-wave-icon path {
+    animation: none !important;
+  }
+
+  html.is-low-motion .hero-grid-layer,
+  html.is-low-motion .hero-aura {
+    transform: none;
+  }
+
+  html.is-low-motion .glass-panel {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
 
   .dashboard-showcase {
@@ -1261,6 +1331,19 @@
     .dashboard-showcase-inner {
       padding-left: 1rem;
       padding-right: 1rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-up,
+    .reveal-left,
+    .reveal-right,
+    .reveal-scale,
+    [data-reveal] {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+      will-change: auto;
     }
   }
 
