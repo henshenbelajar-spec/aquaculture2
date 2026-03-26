@@ -10,18 +10,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const deviceMemory = navigator.deviceMemory ?? 8;
     const lowPowerDevice = hardwareConcurrency <= 4 || deviceMemory <= 4;
 
-    root.classList.toggle('is-low-motion', prefersReducedMotion || lowPowerDevice);
+    root.classList.toggle('is-low-motion', prefersReducedMotion);
+    root.classList.toggle('is-low-power', lowPowerDevice);
 
     let lenis = null;
 
     if (!prefersReducedMotion) {
         lenis = new Lenis({
-            lerp: lowPowerDevice ? 0.14 : 0.1,
-            duration: lowPowerDevice ? undefined : 1.05,
+            lerp: lowPowerDevice ? 0.12 : 0.085,
             smoothWheel: true,
-            syncTouch: false,
-            touchMultiplier: 1,
-            wheelMultiplier: lowPowerDevice ? 0.9 : 0.95,
+            syncTouch: true,
+            syncTouchLerp: lowPowerDevice ? 0.12 : 0.09,
+            touchInertiaMultiplier: lowPowerDevice ? 18 : 22,
+            gestureOrientation: 'vertical',
+            touchMultiplier: lowPowerDevice ? 0.92 : 0.98,
+            wheelMultiplier: lowPowerDevice ? 0.82 : 0.9,
             infinite: false,
             autoResize: true,
         });
@@ -50,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 event.preventDefault();
                 lenis.scrollTo(target, {
                     offset: -88,
-                    duration: lowPowerDevice ? 0.85 : 1.05,
+                    duration: lowPowerDevice ? 0.8 : 0.95,
                 });
             });
         });

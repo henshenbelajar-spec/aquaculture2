@@ -56,9 +56,9 @@
             width: 50vw;
             height: 50vw;
             background: radial-gradient(circle, rgba(0, 240, 255, 0.15) 0%, transparent 60%);
-            filter: blur(80px);
+            filter: blur(52px);
             z-index: -1;
-            animation: float 8s infinite alternate ease-in-out;
+            opacity: 0.72;
         }
 
         .glow-blob-2 {
@@ -68,16 +68,16 @@
             width: 60vw;
             height: 60vw;
             background: radial-gradient(circle, rgba(68, 162, 240, 0.1) 0%, transparent 60%);
-            filter: blur(100px);
+            filter: blur(64px);
             z-index: -1;
-            animation: float 10s infinite alternate-reverse ease-in-out;
+            opacity: 0.66;
         }
 
         /* ===== GLASS ===== */
         .glass-panel {
             background: var(--surface-glass);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--surface-border);
         }
 
@@ -188,7 +188,7 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-white/5 py-4 backdrop-blur-xl"
+    <nav class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-white/5 py-4 backdrop-blur-md"
         aria-label="Main navigation">
         <div class="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
 
@@ -308,7 +308,7 @@
 
             <!-- Global glow behind heading (Pai Joki style) -->
             <div class="hero-aura absolute top-[35%] left-1/2 w-[700px] h-[400px] pointer-events-none z-0"
-                style="background: radial-gradient(ellipse at center, rgba(0,100,240,0.40) 0%, rgba(0,240,255,0.15) 40%, transparent 70%); filter: blur(60px);">
+                style="background: radial-gradient(ellipse at center, rgba(0,100,240,0.34) 0%, rgba(0,240,255,0.12) 40%, transparent 70%); filter: blur(36px);">
             </div>
 
             <!-- Floating Bubbles -->

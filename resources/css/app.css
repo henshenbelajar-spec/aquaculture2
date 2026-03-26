@@ -50,6 +50,12 @@
   html.lenis, html.lenis body {
     height: auto;
   }
+
+  html,
+  body,
+  .lenis.lenis-smooth {
+    overscroll-behavior-y: none;
+  }
   
   .lenis.lenis-smooth {
     scroll-behavior: auto !important;
@@ -77,29 +83,21 @@
     background-color: var(--color-aqua-dark);
   }
 
-  #features,
-  #dashboard,
-  #facility,
-  #biometrics,
-  footer {
-    content-visibility: auto;
-    contain-intrinsic-size: 1px 920px;
-  }
-
   .hero-scene {
     --hero-drift-x: 0px;
     --hero-drift-y: 0px;
   }
 
   .hero-grid-layer {
-    animation: grid-drift 24s linear infinite;
+    animation: grid-drift 34s linear infinite;
     transform: translate3d(0, 0, 0);
     will-change: transform;
   }
 
   .hero-aura {
-    transform: translate3d(calc(-50% + var(--hero-drift-x)), calc(-50% + var(--hero-drift-y)), 0);
-    animation: hero-aura-drift 14s ease-in-out infinite alternate;
+    transform: translate3d(-50%, -50%, 0);
+    opacity: 0.84;
+    animation: hero-aura-drift 18s ease-in-out infinite alternate;
     will-change: transform, opacity;
   }
 
@@ -108,7 +106,9 @@
   }
 
   .hero-visual-shell {
-    animation: hero-shell-float 8.5s ease-in-out infinite;
+    transform: translate3d(0, 0, 0);
+    animation: hero-shell-float 11s ease-in-out infinite;
+    will-change: transform;
   }
 
   .hero-visual-shell::before,
@@ -125,8 +125,8 @@
     background:
       radial-gradient(circle at 50% 40%, rgba(111, 235, 255, 0.28), transparent 58%),
       linear-gradient(180deg, rgba(17, 59, 96, 0.22), rgba(6, 17, 30, 0));
-    filter: blur(18px);
-    opacity: 0.95;
+    filter: blur(12px);
+    opacity: 0.72;
   }
 
   .hero-visual-shell::after {
@@ -136,8 +136,8 @@
     height: 18%;
     border-radius: 999px;
     background: radial-gradient(circle, rgba(0, 240, 255, 0.18), transparent 68%);
-    filter: blur(18px);
-    opacity: 0.82;
+    filter: blur(12px);
+    opacity: 0.62;
   }
 
   .hero-orbit {
@@ -147,13 +147,13 @@
 
   .hero-orbit--outer {
     border-radius: 30% 30% 32% 32% / 16% 16% 20% 20%;
-    animation: hero-orbit-spin 22s linear infinite;
+    animation: hero-orbit-spin 34s linear infinite;
   }
 
   .hero-orbit--inner {
     border-color: rgba(255, 255, 255, 0.10);
     border-radius: 28% 28% 30% 30% / 14% 14% 18% 18%;
-    animation: hero-orbit-spin-reverse 16s linear infinite;
+    animation: hero-orbit-spin-reverse 26s linear infinite;
   }
 
   .hero-visual-frame {
@@ -166,8 +166,7 @@
     box-shadow:
       0 40px 80px -48px rgba(2, 12, 24, 0.92),
       0 0 0 1px rgba(255, 255, 255, 0.04) inset;
-    animation: hero-frame-morph 11s ease-in-out infinite;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(6px);
     padding: 0;
   }
 
@@ -525,7 +524,7 @@
       0 18px 34px -24px var(--feature-accent),
       inset 0 1px 0 rgba(255, 255, 255, 0.12);
     color: var(--feature-accent-strong);
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(10px);
     transition:
       transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
       box-shadow 0.35s ease,
@@ -566,7 +565,7 @@
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    backdrop-filter: blur(14px);
+    backdrop-filter: blur(8px);
   }
 
   .feature-card__badge::before {
@@ -939,6 +938,44 @@
     -webkit-backdrop-filter: blur(10px);
   }
 
+  html.is-low-power .hero-grid-layer {
+    animation-duration: 42s;
+  }
+
+  html.is-low-power .hero-aura {
+    animation-duration: 24s;
+  }
+
+  html.is-low-power .hero-visual-shell {
+    animation-duration: 13s;
+  }
+
+  html.is-low-power .hero-orbit--outer {
+    animation-duration: 42s;
+  }
+
+  html.is-low-power .hero-orbit--inner {
+    animation-duration: 30s;
+  }
+
+  html.is-low-power .hero-visual-shell::before,
+  html.is-low-power .hero-visual-shell::after {
+    opacity: 0.5;
+    filter: blur(8px);
+  }
+
+  html.is-low-power .dashboard-board::after,
+  html.is-low-power .dashboard-water-rings span,
+  html.is-low-power .dashboard-wave-mark span,
+  html.is-low-power .dashboard-wave-icon path {
+    animation: none !important;
+  }
+
+  html.is-low-power .glass-panel {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
   .dashboard-showcase {
     --dashboard-sky: rgba(112, 208, 244, 0.24);
     --dashboard-sky-soft: rgba(196, 236, 250, 0.88);
@@ -1039,8 +1076,8 @@
       radial-gradient(circle at 20% 0%, rgba(70, 215, 255, 0.22), transparent 28%),
       linear-gradient(180deg, rgba(150, 236, 255, 0.06), rgba(91, 208, 244, 0.18));
     border-radius: 50% 50% 0 0;
-    animation: board-wave 6.5s ease-in-out infinite;
     pointer-events: none;
+    opacity: 0.72;
   }
 
   .dashboard-mini-card {
@@ -1129,7 +1166,7 @@
     inset: 0;
     border: 1px solid rgba(26, 175, 214, 0.16);
     border-radius: 999px;
-    animation: ripple-pulse 4.5s ease-out infinite;
+    opacity: 0.42;
   }
 
   .dashboard-water-rings span:nth-child(2) {
@@ -1153,7 +1190,6 @@
     height: 0.4rem;
     border-top: 2px solid rgba(18, 132, 179, 0.72);
     border-radius: 999px;
-    animation: wave-slide 2.6s ease-in-out infinite;
   }
 
   .dashboard-wave-mark span:nth-child(1) {
@@ -1179,16 +1215,13 @@
 
   .dashboard-wave-icon path {
     stroke-dasharray: 28;
-    stroke-dashoffset: 28;
-    animation: wave-draw 4s ease-in-out infinite;
+    stroke-dashoffset: 0;
   }
 
   .dashboard-wave-icon path:nth-child(2) {
-    animation-delay: 0.15s;
   }
 
   .dashboard-wave-icon path:nth-child(3) {
-    animation-delay: 0.3s;
   }
 
   .dashboard-wave-chip {
@@ -1402,18 +1435,18 @@
       transform: translate3d(0, 0, 0);
     }
     100% {
-      transform: translate3d(0, 40px, 0);
+      transform: translate3d(0, 18px, 0);
     }
   }
 
   @keyframes hero-aura-drift {
     0% {
       opacity: 0.68;
-      transform: translate3d(calc(-50% - 10px + var(--hero-drift-x)), calc(-50% - 6px + var(--hero-drift-y)), 0) scale(0.96);
+      transform: translate3d(calc(-50% - 4px), calc(-50% - 3px), 0) scale(0.985);
     }
     100% {
-      opacity: 1;
-      transform: translate3d(calc(-50% + 14px + var(--hero-drift-x)), calc(-50% + 8px + var(--hero-drift-y)), 0) scale(1.05);
+      opacity: 0.9;
+      transform: translate3d(calc(-50% + 6px), calc(-50% + 4px), 0) scale(1.015);
     }
   }
 
@@ -1422,7 +1455,7 @@
       transform: translateY(0px);
     }
     50% {
-      transform: translateY(-10px);
+      transform: translateY(-6px);
     }
   }
 
