@@ -871,6 +871,30 @@
   }
 
   @media (max-width: 768px) {
+    .hero-visual-shell {
+      max-width: min(88vw, 25rem);
+    }
+
+    .hero-orbit--outer {
+      opacity: 0.8;
+    }
+
+    .hero-orbit--inner {
+      inset: 0.7rem !important;
+      opacity: 0.6;
+    }
+
+    .hero-visual-frame {
+      width: calc(100% - 2.4rem);
+      height: calc(100% - 2.4rem);
+      margin: auto;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero-visual-image {
+      filter: none;
+    }
+
     .reveal-up,
     .reveal-left,
     .reveal-right,
@@ -974,6 +998,18 @@
   html.is-low-power .glass-panel {
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
+  }
+
+  html.is-mobile-device .dashboard-board::after,
+  html.is-mobile-device .dashboard-water-rings span,
+  html.is-mobile-device .dashboard-wave-mark span,
+  html.is-mobile-device .dashboard-wave-icon path {
+    animation: none !important;
+  }
+
+  html.is-mobile-device .feature-card__wing,
+  html.is-mobile-device .feature-card__pulse {
+    display: none;
   }
 
   .dashboard-showcase {

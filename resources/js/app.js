@@ -9,21 +9,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const hardwareConcurrency = navigator.hardwareConcurrency ?? 8;
     const deviceMemory = navigator.deviceMemory ?? 8;
     const lowPowerDevice = hardwareConcurrency <= 4 || deviceMemory <= 4;
+    const mobileDevice = coarsePointer || window.innerWidth < 768;
 
     root.classList.toggle('is-low-motion', prefersReducedMotion);
     root.classList.toggle('is-low-power', lowPowerDevice);
+    root.classList.toggle('is-mobile-device', mobileDevice);
 
     let lenis = null;
 
-    if (!prefersReducedMotion) {
+    if (!prefersReducedMotion && !mobileDevice) {
         lenis = new Lenis({
             lerp: lowPowerDevice ? 0.12 : 0.085,
             smoothWheel: true,
-            syncTouch: true,
-            syncTouchLerp: lowPowerDevice ? 0.12 : 0.09,
-            touchInertiaMultiplier: lowPowerDevice ? 18 : 22,
+            syncTouch: false,
             gestureOrientation: 'vertical',
-            touchMultiplier: lowPowerDevice ? 0.92 : 0.98,
+            touchMultiplier: 1,
             wheelMultiplier: lowPowerDevice ? 0.82 : 0.9,
             infinite: false,
             autoResize: true,
@@ -35,29 +35,41 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         requestAnimationFrame(raf);
+    }
 
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-            anchor.addEventListener('click', (event) => {
-                const href = anchor.getAttribute('href');
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', (event) => {
+            const href = anchor.getAttribute('href');
 
-                if (!href || href === '#') {
-                    return;
-                }
+            if (!href || href === '#') {
+                return;
+            }
 
-                const target = document.querySelector(href);
+            const target = document.querySelector(href);
 
-                if (!target) {
-                    return;
-                }
+            if (!target) {
+                return;
+            }
 
-                event.preventDefault();
+            event.preventDefault();
+
+            if (lenis) {
                 lenis.scrollTo(target, {
                     offset: -88,
                     duration: lowPowerDevice ? 0.8 : 0.95,
                 });
+
+                return;
+            }
+
+            const targetTop = target.getBoundingClientRect().top + window.scrollY - 88;
+
+            window.scrollTo({
+                top: targetTop,
+                behavior: 'smooth',
             });
         });
-    }
+    });
 
     const revealElements = document.querySelectorAll(
         '.reveal-up, .reveal-left, .reveal-right, .reveal-scale, [data-reveal]'

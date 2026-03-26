@@ -137,6 +137,23 @@
             }
         }
 
+        @media (max-width: 768px) {
+            .glow-blob-1,
+            .glow-blob-2 {
+                filter: blur(36px);
+                opacity: 0.42;
+            }
+
+            .glass-panel {
+                backdrop-filter: blur(6px);
+                -webkit-backdrop-filter: blur(6px);
+            }
+
+            .hero-bubbles .bubble:nth-child(n + 7) {
+                display: none;
+            }
+        }
+
         /* ===== NAVBAR ACTIVE LINK ===== */
         .nav-link {
             position: relative;
