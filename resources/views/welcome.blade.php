@@ -75,10 +75,10 @@
 
         /* ===== GLASS ===== */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--surface-glass);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--surface-border);
         }
 
         /* ===== GRID BACKGROUND ===== */
@@ -168,18 +168,6 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        @media (max-width: 768px) {
-            .glass-panel {
-                backdrop-filter: blur(10px);
-                -webkit-backdrop-filter: blur(10px);
-            }
-
-            .glow-blob-1,
-            .glow-blob-2 {
-                filter: blur(56px);
-                animation-duration: 14s;
-            }
-        }
     </style>
 </head>
 
@@ -254,7 +242,8 @@
                     onclick="aquaNavClose()">System</a>
                 <a href="#dashboard" class="nav-link block py-3 text-base border-b border-white/5"
                     onclick="aquaNavClose()">Dashboard</a>
-                <a href="#facility" class="nav-link block py-3 text-base" onclick="aquaNavClose()">Facilities</a>
+                <a href="#facility" class="nav-link block py-3 text-base border-b border-white/5"
+                    onclick="aquaNavClose()">Facilities</a>
                 <div class="flex gap-3 pt-4 mt-1">
                     <a href="#"
                         class="flex-1 text-center py-2.5 text-sm font-semibold rounded-full border border-white/10 hover:bg-[#00F0FF]/10 hover:border-[#00F0FF]/50 transition-colors duration-200 text-white">Log
@@ -350,43 +339,6 @@
                     style="width:9px;height:9px;left:55%;bottom:-50px;animation-duration:9s;animation-delay:6s;"></div>
             </div>
 
-            <div class="hero-drifters" aria-hidden="true">
-                <div class="hero-drifter hero-drifter--fish hero-drifter--ltr hero-drifter--bob hero-drifter--fish-one">
-                    <svg viewBox="0 0 64 64" fill="none">
-                        <path d="M11 32C16 22 27 18 38 20C45 21.4 50.2 25.2 52.6 32C50.2 38.8 45 42.6 38 44C27 46 16 42 11 32Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
-                        <path d="M52.5 32L59 25V39L52.5 32Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
-                        <path d="M20 32C22.6 36.3 22.6 39.8 20 44" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                        <circle cx="19" cy="28" r="2" fill="currentColor"/>
-                    </svg>
-                </div>
-                <div class="hero-drifter hero-drifter--fish hero-drifter--rtl hero-drifter--float hero-drifter--fish-two">
-                    <svg viewBox="0 0 64 64" fill="none">
-                        <path d="M11 32C16 22 27 18 38 20C45 21.4 50.2 25.2 52.6 32C50.2 38.8 45 42.6 38 44C27 46 16 42 11 32Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
-                        <path d="M52.5 32L59 25V39L52.5 32Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>
-                        <path d="M20 32C22.6 36.3 22.6 39.8 20 44" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
-                        <circle cx="19" cy="28" r="2" fill="currentColor"/>
-                    </svg>
-                </div>
-                <div class="hero-drifter hero-drifter--ammonia hero-drifter--ltr hero-drifter--bob hero-drifter--ammonia-one">
-                    <svg viewBox="0 0 56 56" fill="none">
-                        <circle cx="28" cy="28" r="4.5" stroke="currentColor" stroke-width="2.1"/>
-                        <circle cx="16" cy="17" r="3.2" stroke="currentColor" stroke-width="2.1"/>
-                        <circle cx="41" cy="19" r="3.2" stroke="currentColor" stroke-width="2.1"/>
-                        <circle cx="23" cy="42" r="3.2" stroke="currentColor" stroke-width="2.1"/>
-                        <path d="M24 25L18.5 20.5M32 25L38 21M27 32L24 38" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>
-                    </svg>
-                </div>
-                <div class="hero-drifter hero-drifter--ammonia hero-drifter--rtl hero-drifter--float hero-drifter--ammonia-two">
-                    <svg viewBox="0 0 56 56" fill="none">
-                        <circle cx="28" cy="28" r="4.5" stroke="currentColor" stroke-width="2.1"/>
-                        <circle cx="16" cy="17" r="3.2" stroke="currentColor" stroke-width="2.1"/>
-                        <circle cx="41" cy="19" r="3.2" stroke="currentColor" stroke-width="2.1"/>
-                        <circle cx="23" cy="42" r="3.2" stroke="currentColor" stroke-width="2.1"/>
-                        <path d="M24 25L18.5 20.5M32 25L38 21M27 32L24 38" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>
-                    </svg>
-                </div>
-            </div>
-
             <div
                 class="relative w-full max-w-7xl mx-auto px-6 md:px-12 pt-32 pb-20 md:pt-44 md:pb-28 lg:pt-52 lg:pb-36 flex flex-col lg:flex-row items-center justify-between gap-16 z-10">
 
@@ -400,7 +352,7 @@
                     </div>
 
                     <h1
-                        class="text-5xl md:text-7xl lg:text-8xl font-bold text-white tracking-tight leading-[1.05] mb-6 w-full">
+                        class="hero-title font-bold text-white tracking-tight leading-[1.05] mb-6 w-full">
                         Precision <br class="hidden lg:block" />
                         <span
                             class="text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] via-[#44AAFF] to-[#44A2F0]"
@@ -408,18 +360,18 @@
                             Data.</span>
                     </h1>
 
-                    <p class="text-lg md:text-xl text-zinc-400 mb-10 max-w-xl font-light leading-relaxed">
+                    <p class="hero-subtitle mb-10 max-w-xl font-light leading-relaxed">
                         Elevate your fish farming with cutting-edge smart sensors and real-time dashboard analytics.
                         Monitor water quality, oxygen levels, and temperature effortlessly.
                     </p>
 
                     <div class="flex flex-col sm:flex-row items-center gap-4">
                         <a href="#features"
-                            class="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-[#00F0FF] to-[#44A2F0] text-[#071121] font-bold text-base hover:scale-105 transition-all duration-300 shadow-[0_0_25px_rgba(0,240,255,0.5)] hover:shadow-[0_0_40px_rgba(0,240,255,0.7)] text-center">
+                            class="btn-primary w-full sm:w-auto px-8 py-4 rounded-full text-[#071121] font-bold text-base text-center">
                             Explore Ecosystem
                         </a>
                         <a href="{{ route('demo') }}"
-                            class="w-full sm:w-auto px-8 py-4 rounded-full glass-panel border border-[#00F0FF]/30 text-white font-medium text-base hover:bg-[#00F0FF]/10 transition-all duration-300 flex items-center justify-center gap-2">
+                            class="btn-ghost w-full sm:w-auto px-8 py-4 rounded-full text-white font-medium text-base flex items-center justify-center gap-2">
                             <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z">
@@ -460,17 +412,17 @@
         <section id="features" class="w-full py-24 z-10">
             <div class="max-w-7xl mx-auto px-6 md:px-12">
                 <div class="text-center mb-16 reveal-up">
-                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Master Your <span
+                    <h2 class="section-title font-bold text-white mb-4">Master Your <span
                             class="text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] to-[#44A2F0]">Ecosystem</span>
                     </h2>
-                    <p class="text-zinc-400 max-w-2xl mx-auto text-pretty">Advanced telemetry meets intuitive design.
+                    <p class="section-subtitle max-w-2xl mx-auto text-pretty">Advanced telemetry meets intuitive design.
                         Our smart tools empower you with actionable insights right at your fingertips.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     <!-- Feature Card 1 -->
                     <div
-                        class="feature-card feature-card--sensor float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-up glow-border">
+                        class="feature-card feature-card--sensor float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-100 glow-border">
                         <div class="feature-card__mesh" aria-hidden="true"></div>
                         <div class="feature-card__wing" aria-hidden="true"></div>
                         <div class="feature-card__pulse" aria-hidden="true"></div>
@@ -502,9 +454,6 @@
                             Continuously monitor pH, Dissolved Oxygen (DO), salinity, and turbidity with our
                             military-grade submersive sensors.
                         </p>
-                        <div class="feature-card__meter" aria-hidden="true">
-                            <span class="w-[74%]"></span>
-                        </div>
                         <div class="feature-card__footer">
                             <div class="feature-card__tags">
                                 <div
@@ -527,7 +476,7 @@
 
                     <!-- Feature Card 2 -->
                     <div
-                        class="feature-card feature-card--automation float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-100">
+                        class="feature-card feature-card--automation float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-200">
                         <div class="feature-card__mesh" aria-hidden="true"></div>
                         <div class="feature-card__wing" aria-hidden="true"></div>
                         <div class="feature-card__pulse" aria-hidden="true"></div>
@@ -559,9 +508,6 @@
                             Connect IoT aerators and automated feeders. Trigger actions based on real-time environmental
                             data parameters.
                         </p>
-                        <div class="feature-card__meter" aria-hidden="true">
-                            <span class="w-[68%]"></span>
-                        </div>
                         <div class="feature-card__footer">
                             <div class="feature-card__tags">
                                 <div
@@ -584,7 +530,7 @@
 
                     <!-- Feature Card 3 -->
                     <div
-                        class="feature-card feature-card--analytics float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-200 glow-border">
+                        class="feature-card feature-card--analytics float-card glass-panel rounded-[2rem] p-8 flex flex-col justify-start relative overflow-hidden group reveal-up reveal-delay-300 glow-border">
                         <div class="feature-card__mesh" aria-hidden="true"></div>
                         <div class="feature-card__wing" aria-hidden="true"></div>
                         <div class="feature-card__pulse" aria-hidden="true"></div>
@@ -618,9 +564,6 @@
                             Leverage AI models to forecast biomass growth, disease risk, and energy consumption across
                             your farming modules.
                         </p>
-                        <div class="feature-card__meter" aria-hidden="true">
-                            <span class="w-[82%]"></span>
-                        </div>
                         <div class="feature-card__footer">
                             <div class="feature-card__tags">
                                 <div
@@ -913,7 +856,7 @@
                     aria-hidden="true"></div>
 
                 <div class="cta-kicker">Farm-ready platform</div>
-                <h2 class="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight drop-shadow-md text-balance">
+                <h2 class="section-title md:text-6xl font-bold text-white mb-6 tracking-tight drop-shadow-md text-balance">
                     Ready to dive in?</h2>
                 <p class="text-lg text-zinc-300 mb-10 max-w-xl font-light text-pretty">Join the top aquaculture sites
                     worldwide who use AquaSmart to secure their yields and monitor their environment.</p>

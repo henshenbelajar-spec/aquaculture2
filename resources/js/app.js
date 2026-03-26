@@ -6,38 +6,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     const coarsePointer = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-    const lowCpuDevice = typeof navigator.hardwareConcurrency === 'number' && navigator.hardwareConcurrency <= 4;
-    const lowMemoryDevice = typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 4;
-    const liteMode = prefersReducedMotion || coarsePointer || lowCpuDevice || lowMemoryDevice;
-    const shouldUseLenis = supportsHover && !liteMode && window.innerWidth >= 1024;
-
-    document.documentElement.classList.toggle('perf-lite', liteMode);
 
     // 1. Initialize Lenis for Smooth Scrolling
-    if (shouldUseLenis) {
-        const lenis = new Lenis({
-            duration: 1.05,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            direction: 'vertical',
-            gestureDirection: 'vertical',
-            smooth: true,
-            mouseMultiplier: 0.95,
-            smoothTouch: false,
-            touchMultiplier: 1.4,
-            infinite: false,
-        });
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        direction: 'vertical',
+        gestureDirection: 'vertical',
+        smooth: true,
+        mouseMultiplier: 1,
+        smoothTouch: false,
+        touchMultiplier: 2,
+        infinite: false,
+    });
 
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-
+    function raf(time) {
+        lenis.raf(time);
         requestAnimationFrame(raf);
     }
 
+    requestAnimationFrame(raf);
+
     // 2. Intersection Observer for Scroll Animations
     // Select all elements that should animate in on scroll
-    const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
+    const revealElements = document.querySelectorAll('.reveal-up');
 
     const observerOptions = {
         root: null, // viewport
@@ -112,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.addEventListener('focusout', () => card.classList.remove('is-active'));
     };
 
-    if (supportsHover && !liteMode) {
+    if (supportsHover && !prefersReducedMotion) {
         floatCards.forEach(attachFloatCardMotion);
 
         featureCards.forEach(card => {
@@ -120,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    if (heroScene && supportsHover && !liteMode) {
+    if (heroScene && supportsHover && !prefersReducedMotion) {
         let heroFrame = null;
 
         const resetHeroDrift = () => {
