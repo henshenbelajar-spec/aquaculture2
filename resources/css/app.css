@@ -51,8 +51,6 @@
     height: auto;
   }
 
-  html,
-  body,
   .lenis.lenis-smooth {
     overscroll-behavior-y: none;
   }
@@ -872,23 +870,30 @@
 
   @media (max-width: 768px) {
     .hero-visual-shell {
-      max-width: min(88vw, 25rem);
+      max-width: min(86vw, 24rem);
+      perspective: none;
     }
 
     .hero-orbit--outer {
-      opacity: 0.8;
+      inset: -0.35rem;
+      opacity: 0.5;
+      border-color: rgba(171, 239, 255, 0.16);
     }
 
     .hero-orbit--inner {
-      inset: 0.7rem !important;
-      opacity: 0.6;
+      inset: 0.95rem !important;
+      opacity: 0.82;
+      border-color: rgba(171, 239, 255, 0.26);
     }
 
     .hero-visual-frame {
-      width: calc(100% - 2.4rem);
-      height: calc(100% - 2.4rem);
+      width: calc(100% - 3rem);
+      height: calc(100% - 3rem);
       margin: auto;
       backdrop-filter: blur(4px);
+      box-shadow:
+        0 24px 48px -36px rgba(2, 12, 24, 0.72),
+        0 0 0 1px rgba(255, 255, 255, 0.04) inset;
     }
 
     .hero-visual-image {
@@ -1010,6 +1015,25 @@
   html.is-mobile-device .feature-card__wing,
   html.is-mobile-device .feature-card__pulse {
     display: none;
+  }
+
+  html.is-mobile-device,
+  html.is-mobile-device body {
+    overscroll-behavior-y: auto !important;
+  }
+
+  html.is-mobile-device .glass-panel {
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+  }
+
+  html.is-mobile-device .float-card,
+  html.is-mobile-device .dashboard-board,
+  html.is-mobile-device .dashboard-mini-card,
+  html.is-mobile-device .dashboard-status-card {
+    box-shadow:
+      0 18px 34px -28px rgba(2, 12, 24, 0.42),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
   }
 
   .dashboard-showcase {
