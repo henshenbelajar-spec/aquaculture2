@@ -1,0 +1,168 @@
+@php($demoVideoUrl = route('demo.video'))
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth" style="color-scheme: dark;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Watch the AquaSmart platform demo video.">
+    <meta name="theme-color" content="#071121">
+    <title>AquaSmart | Watch Demo</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(180deg, #08111d 0%, #0b1624 46%, #09111c 100%);
+        }
+
+        .demo-page {
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .demo-page::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at top left, rgba(0, 240, 255, 0.08), transparent 22%),
+                radial-gradient(circle at bottom right, rgba(68, 162, 240, 0.08), transparent 24%);
+        }
+
+        .demo-shell {
+            background: rgba(11, 20, 32, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            box-shadow:
+                0 32px 64px -52px rgba(0, 0, 0, 0.72),
+                inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+        .demo-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .demo-video-wrap {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.35rem;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            background: rgba(5, 12, 22, 0.95);
+            box-shadow:
+                0 24px 52px -40px rgba(2, 8, 18, 0.86),
+                inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+        .demo-video {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            background: #02070f;
+        }
+
+        .demo-kicker {
+            color: #97ecff;
+            letter-spacing: 0.22em;
+        }
+
+        .demo-back {
+            color: #d9e7f2;
+        }
+
+        .demo-back:hover {
+            border-color: rgba(151, 236, 255, 0.26);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .demo-meta {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .demo-chip {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #c6d5e3;
+        }
+
+        .demo-caption {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        @media (min-width: 960px) {
+            .demo-grid {
+                grid-template-columns: minmax(0, 1fr) 18rem;
+                align-items: start;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .demo-shell {
+                border-radius: 1.5rem;
+            }
+
+            .demo-video-wrap {
+                border-radius: 1.1rem;
+            }
+
+            .demo-video {
+                min-height: 14rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen overflow-x-hidden text-white antialiased">
+    <main class="demo-page relative px-4 py-5 sm:px-6 sm:py-8 md:px-10 lg:px-12">
+        <div class="relative z-10 mx-auto flex min-h-[calc(100vh-2.5rem)] max-w-5xl flex-col justify-center sm:min-h-[calc(100vh-4rem)]">
+            <div class="reveal-up demo-shell rounded-[1.5rem] p-4 sm:p-6 md:rounded-[2rem] md:p-8 lg:p-10">
+                <div class="demo-grid">
+                    <div class="order-2 lg:order-1">
+                        <div class="demo-kicker text-[11px] font-semibold uppercase">AquaSmart Demo Room</div>
+                        <a href="{{ url('/') }}"
+                            class="demo-back mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/4 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] transition">
+                            <span aria-hidden="true">&larr;</span>
+                            Back to Home
+                        </a>
+                        <h1 class="mt-5 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-5xl">Watch Demo</h1>
+                        <p class="mt-4 max-w-2xl text-base leading-relaxed text-[#9CB0C2] md:text-lg">
+                            Lihat walkthrough AquaSmart dalam tampilan yang lebih fokus dan nyaman. Tinggal play,
+                            full screen, atau scrub sesuai kebutuhan.
+                        </p>
+                        <div class="mt-5 flex flex-wrap gap-3">
+                            <div class="demo-chip rounded-full px-4 py-2 text-sm">Product Walkthrough</div>
+                            <div class="demo-chip rounded-full px-4 py-2 text-sm">MP4 Playback</div>
+                        </div>
+                    </div>
+
+                    <div class="order-1 rounded-[1.15rem] demo-meta px-4 py-4 sm:px-5 lg:order-2">
+                        <div class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#97ECFF]">Now Playing</div>
+                        <div class="mt-2 text-base font-medium text-white">AquaSmart Product Walkthrough</div>
+                        <div class="mt-2 text-sm leading-relaxed text-[#8CA1B6]">Focus view for onboarding and demo review.</div>
+                    </div>
+                </div>
+
+                <div class="demo-video-wrap reveal-up reveal-delay-100 mt-6 p-2 sm:mt-8 sm:p-3 md:p-4">
+                    <video class="demo-video rounded-[1rem] sm:rounded-[1.2rem]" controls playsinline preload="metadata"
+                        autoplay src="{{ $demoVideoUrl }}">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <div class="demo-caption mt-5 pt-4 text-sm text-[#8CA1B6] sm:mt-6 sm:pt-5">
+                    <p>Tip: gunakan full screen untuk presentasi ke client atau tim internal.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

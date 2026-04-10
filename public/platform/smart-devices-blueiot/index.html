@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+            name="description"
+            content="Smart devices platform dengan sensor, kamera, dan kontrol real-time untuk aquaculture."
+        />
+        <title>BlueIoT | Smart Devices Platform</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="/css/platform.css" />
+    </head>
+    <body class="platform-body">
+        <header class="platform-nav">
+            <div class="container nav-inner">
+                <a class="brand" href="/">
+                    <span class="brand-mark">AS</span>
+                    AquaSmart
+                </a>
+                <button
+                    class="nav-toggle"
+                    id="nav-toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="nav-menu"
+                >
+                    Menu
+                </button>
+                <nav class="nav-links" id="nav-menu">
+                    <a href="/">Home</a>
+                    <a href="/platform/" class="active">Platform</a>
+                    <a href="/platform/#projects">Projects</a>
+                    <a href="/demo.html">Demo</a>
+                    <a href="#book-demo" class="btn btn-primary">Book Demo</a>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <section class="section hero">
+                <div class="container hero-grid">
+                    <div class="reveal">
+                        <div class="eyebrow" data-project-kicker>
+                            Smart Devices / BlueIoT
+                        </div>
+                        <h1 class="hero-title display-font" data-project-title>
+                            Smart sensor mesh untuk monitoring tambak real-time
+                        </h1>
+                        <p class="hero-copy" data-project-summary>
+                            BlueIoT menghubungkan sensor DO, pH, salinitas,
+                            suhu, dan kamera bawah air ke dashboard yang
+                            responsif. Semua data masuk dengan latency rendah
+                            agar tim operasional bisa bertindak lebih cepat.
+                        </p>
+                        <div class="hero-actions">
+                            <a class="btn btn-primary" href="#book-demo"
+                                >Request Demo</a
+                            >
+                            <a class="btn btn-secondary" href="/platform/"
+                                >Back to Portfolio</a
+                            >
+                        </div>
+                        <div class="hero-badges">
+                            <span class="badge" data-project-badge="0"
+                                >Real-time sensors</span
+                            >
+                            <span class="badge" data-project-badge="1"
+                                >Edge AI</span
+                            >
+                            <span class="badge" data-project-badge="2"
+                                >Auto alerts</span
+                            >
+                        </div>
+                    </div>
+
+                    <aside class="hero-panel reveal" style="--delay: 0.1s">
+                        <div class="panel-title" data-panel-title>
+                            Fleet health
+                        </div>
+                        <div class="panel-stat display-font" data-panel-stat>
+                            98.7%
+                        </div>
+                        <div class="panel-title" data-panel-label>
+                            Device uptime last 30 days
+                        </div>
+                        <div class="panel-metric">
+                            <div>
+                                <div class="metric-row">
+                                    <span>Water quality</span>
+                                    <span data-metric-value="quality">86%</span>
+                                </div>
+                                <div class="progress">
+                                    <div
+                                        class="progress-bar"
+                                        data-metric-bar="quality"
+                                        style="width: 86%"
+                                    ></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="metric-row">
+                                    <span>Feeding ops</span>
+                                    <span data-metric-value="feeding">92%</span>
+                                </div>
+                                <div class="progress">
+                                    <div
+                                        class="progress-bar"
+                                        data-metric-bar="feeding"
+                                        style="width: 92%"
+                                    ></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="metric-row">
+                                    <span>Alert delivery</span>
+                                    <span data-metric-value="alert">99%</span>
+                                </div>
+                                <div class="progress">
+                                    <div
+                                        class="progress-bar"
+                                        data-metric-bar="alert"
+                                        style="width: 99%"
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media-card" style="margin-top: 20px">
+                            <img
+                                data-project-hero-image
+                                src="/images/aqua_sensor.png"
+                                alt="BlueIoT sensor hardware"
+                            />
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container split-section">
+                    <div class="reveal">
+                        <div class="eyebrow">Why BlueIoT</div>
+                        <h2 class="section-title display-font">
+                            Monitoring yang lebih jelas, keputusan lebih cepat
+                        </h2>
+                        <p class="section-intro">
+                            Sistem BlueIoT dibuat untuk area produksi intensif
+                            yang butuh visibilitas penuh. Data disatukan dalam
+                            satu alur kerja yang rapi, mudah dipahami, dan siap
+                            digunakan di lapangan.
+                        </p>
+                        <ul class="bullet-list">
+                            <li>
+                                <span class="bullet-dot"></span>
+                                <span data-bullet="0"
+                                    >Sensor multi-parameter dengan kalibrasi
+                                    otomatis dan koneksi stabil.</span
+                                >
+                            </li>
+                            <li>
+                                <span class="bullet-dot"></span>
+                                <span data-bullet="1"
+                                    >Dashboard kondisi kolam real-time dengan
+                                    notifikasi prioritas.</span
+                                >
+                            </li>
+                            <li>
+                                <span class="bullet-dot"></span>
+                                <span data-bullet="2"
+                                    >Integrasi feeder dan aerator untuk respon
+                                    cepat ketika ada penurunan kualitas air.</span
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="media-grid reveal" style="--delay: 0.1s">
+                        <div class="media-card">
+                            <img
+                                src="/images/aqua_dashboard.png"
+                                alt="Monitoring dashboard"
+                            />
+                        </div>
+                        <div class="media-card">
+                            <img
+                                src="/images/aqua_facility.png"
+                                alt="Facility overview"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <div class="eyebrow">Device Lineup</div>
+                    <h2 class="section-title display-font">
+                        Sensor, kamera, dan perangkat kontrol terintegrasi
+                    </h2>
+                    <p class="section-intro">
+                        Semua perangkat dibangun untuk kondisi lapangan yang
+                        berat, dengan enclosures tahan korosi dan koneksi
+                        realtime ke edge gateway.
+                    </p>
+                    <div class="feature-grid">
+                        <div class="feature-card reveal">
+                            <div class="feature-icon">DO</div>
+                            <h3 class="feature-title">Dissolved Oxygen</h3>
+                            <p class="feature-copy">
+                                Sensor DO presisi tinggi untuk memantau
+                                fluktuasi harian dan night dip.
+                            </p>
+                        </div>
+                        <div
+                            class="feature-card reveal"
+                            style="--delay: 0.05s"
+                        >
+                            <div class="feature-icon">PH</div>
+                            <h3 class="feature-title">pH + Salinity</h3>
+                            <p class="feature-copy">
+                                Monitoring pH, salinitas, dan suhu untuk
+                                menjaga stabilitas lingkungan.
+                            </p>
+                        </div>
+                        <div
+                            class="feature-card reveal"
+                            style="--delay: 0.1s"
+                        >
+                            <div class="feature-icon">AI</div>
+                            <h3 class="feature-title">Underwater Vision</h3>
+                            <p class="feature-copy">
+                                Kamera bawah air untuk cek aktivitas feeding dan
+                                estimasi biomassa.
+                            </p>
+                        </div>
+                        <div class="feature-card reveal">
+                            <div class="feature-icon">NET</div>
+                            <h3 class="feature-title">Edge Gateway</h3>
+                            <p class="feature-copy">
+                                Data gateway yang menggabungkan sensor, kamera,
+                                dan kontrol equipment.
+                            </p>
+                        </div>
+                        <div
+                            class="feature-card reveal"
+                            style="--delay: 0.05s"
+                        >
+                            <div class="feature-icon">AL</div>
+                            <h3 class="feature-title">Alert Matrix</h3>
+                            <p class="feature-copy">
+                                Notifikasi multi-channel untuk tindakan cepat
+                                saat parameter turun.
+                            </p>
+                        </div>
+                        <div
+                            class="feature-card reveal"
+                            style="--delay: 0.1s"
+                        >
+                            <div class="feature-icon">API</div>
+                            <h3 class="feature-title">Open Integration</h3>
+                            <p class="feature-copy">
+                                API untuk integrasi ke feeder, ERP, dan analitik
+                                eksternal.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <div class="eyebrow">Control Loop</div>
+                    <h2 class="section-title display-font">
+                        Cara kerja kontrol di lapangan
+                    </h2>
+                    <p class="section-intro">
+                        Alur kerja dibuat sesederhana mungkin agar operator dan
+                        manajer bisa mengambil keputusan cepat.
+                    </p>
+                    <div class="flow-grid">
+                        <div class="flow-step reveal">
+                            <div class="flow-index">01</div>
+                            <div>
+                                <h3 class="flow-title">
+                                    Sensor capture & validation
+                                </h3>
+                                <p class="flow-copy">
+                                    Sensor menangkap data dan gateway melakukan
+                                    validasi otomatis sebelum dikirim.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="flow-step reveal"
+                            style="--delay: 0.05s"
+                        >
+                            <div class="flow-index">02</div>
+                            <div>
+                                <h3 class="flow-title">
+                                    Realtime decision engine
+                                </h3>
+                                <p class="flow-copy">
+                                    Sistem menandai kondisi kritis dan memberi
+                                    rekomendasi tindakan.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="flow-step reveal"
+                            style="--delay: 0.1s"
+                        >
+                            <div class="flow-index">03</div>
+                            <div>
+                                <h3 class="flow-title">
+                                    Auto response & alerts
+                                </h3>
+                                <p class="flow-copy">
+                                    Aerator atau feeder bisa aktif otomatis,
+                                    alert dikirim ke tim di lapangan.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="flow-step reveal"
+                            style="--delay: 0.15s"
+                        >
+                            <div class="flow-index">04</div>
+                            <div>
+                                <h3 class="flow-title">Analytics review</h3>
+                                <p class="flow-copy">
+                                    Data disimpan untuk evaluasi harian, weekly
+                                    review, dan perencanaan produksi.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <div class="eyebrow">Who Uses It</div>
+                    <h2 class="section-title display-font">
+                        Dibuat untuk tim operasional aquaculture
+                    </h2>
+                    <p class="section-intro">
+                        Tampilan dan workflow dibuat agar semua role punya
+                        konteks yang sama, dari teknisi hingga owner.
+                    </p>
+                    <div class="persona-grid">
+                        <div class="persona-card reveal">
+                            <h3 class="persona-title">Farm Manager</h3>
+                            <p class="persona-copy">
+                                Ringkasan kondisi kolam, alert kritis, dan
+                                rekomendasi tindakan setiap hari.
+                            </p>
+                        </div>
+                        <div
+                            class="persona-card reveal"
+                            style="--delay: 0.05s"
+                        >
+                            <h3 class="persona-title">Technician</h3>
+                            <p class="persona-copy">
+                                Detail sensor, status perangkat, dan checklist
+                                maintenance.
+                            </p>
+                        </div>
+                        <div
+                            class="persona-card reveal"
+                            style="--delay: 0.1s"
+                        >
+                            <h3 class="persona-title">Hatchery Lead</h3>
+                            <p class="persona-copy">
+                                Kontrol kualitas air dan biosecurity untuk area
+                                produksi sensitif.
+                            </p>
+                        </div>
+                        <div
+                            class="persona-card reveal"
+                            style="--delay: 0.15s"
+                        >
+                            <h3 class="persona-title">Owner</h3>
+                            <p class="persona-copy">
+                                KPI, trend pertumbuhan, dan performa site secara
+                                ringkas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <div class="eyebrow">Connected Ecosystem</div>
+                    <h2 class="section-title display-font">
+                        Terhubung dengan modul produksi lainnya
+                    </h2>
+                    <p class="section-intro">
+                        BlueIoT tidak berdiri sendiri. Integrasi dengan modul
+                        feeding, inventory, dan analytics membantu tim bergerak
+                        lebih cepat.
+                    </p>
+                    <div class="ecosystem-grid">
+                        <div class="ecosystem-card reveal">
+                            <h3 class="ecosystem-title">Feeding Intelligence</h3>
+                            <p class="ecosystem-copy">
+                                Data sensor masuk ke sistem feeding untuk
+                                menjaga efisiensi pakan.
+                            </p>
+                        </div>
+                        <div
+                            class="ecosystem-card reveal"
+                            style="--delay: 0.05s"
+                        >
+                            <h3 class="ecosystem-title">Ops Dashboard</h3>
+                            <p class="ecosystem-copy">
+                                Semua site dan kolam terlihat dalam satu layar.
+                            </p>
+                        </div>
+                        <div
+                            class="ecosystem-card reveal"
+                            style="--delay: 0.1s"
+                        >
+                            <h3 class="ecosystem-title">Compliance Log</h3>
+                            <p class="ecosystem-copy">
+                                Rekam data historis untuk audit dan traceability.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="container">
+                    <div class="eyebrow">Best Fit</div>
+                    <h2 class="section-title display-font">
+                        Cocok untuk lingkungan produksi yang menantang
+                    </h2>
+                    <p class="section-intro">
+                        Dirancang untuk tambak intensif, hatchery, dan
+                        fasilitas RAS yang butuh stabilitas tinggi.
+                    </p>
+                    <div class="environment-grid">
+                        <div class="environment-card reveal">
+                            <h3 class="environment-title">Intensive Ponds</h3>
+                            <p class="environment-copy">
+                                Monitoring multi-parameter untuk kepadatan tinggi.
+                            </p>
+                        </div>
+                        <div
+                            class="environment-card reveal"
+                            style="--delay: 0.05s"
+                        >
+                            <h3 class="environment-title">Shrimp Hatchery</h3>
+                            <p class="environment-copy">
+                                Kontrol kualitas air dengan alert berlapis.
+                            </p>
+                        </div>
+                        <div
+                            class="environment-card reveal"
+                            style="--delay: 0.1s"
+                        >
+                            <h3 class="environment-title">RAS Facility</h3>
+                            <p class="environment-copy">
+                                Integrasi sensor dengan sistem filtrasi dan aerasi.
+                            </p>
+                        </div>
+                        <div
+                            class="environment-card reveal"
+                            style="--delay: 0.15s"
+                        >
+                            <h3 class="environment-title">Open Sea Cages</h3>
+                            <p class="environment-copy">
+                                Monitoring wave impact dan kondisi air harian.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section" id="book-demo">
+                <div class="container">
+                    <div class="cta-card reveal">
+                        <h2 class="display-font">
+                            Siap lihat BlueIoT bekerja di lapangan?
+                        </h2>
+                        <p>
+                            Jadwalkan demo dan dapatkan rencana implementasi
+                            sesuai kebutuhan site kamu.
+                        </p>
+                        <a class="btn btn-primary" href="/demo.html"
+                            >Schedule a Demo</a
+                        >
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="platform-footer">
+            <div class="container">
+                <div>
+                    AquaSmart Platform 2026. Smart devices for safer, faster
+                    aquaculture operations.
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            const navToggle = document.getElementById("nav-toggle");
+            const navMenu = document.getElementById("nav-menu");
+            navToggle.addEventListener("click", () => {
+                const expanded =
+                    navToggle.getAttribute("aria-expanded") === "true";
+                navToggle.setAttribute("aria-expanded", String(!expanded));
+                navMenu.classList.toggle("is-open", !expanded);
+            });
+
+            const projects = {
+                blueiot: {
+                    kicker: "Smart Devices / BlueIoT",
+                    title:
+                        "Smart sensor mesh untuk monitoring tambak real-time",
+                    summary:
+                        "BlueIoT menghubungkan sensor DO, pH, salinitas, suhu, dan kamera bawah air ke dashboard yang responsif. Semua data masuk dengan latency rendah agar tim operasional bisa bertindak lebih cepat.",
+                    badges: ["Real-time sensors", "Edge AI", "Auto alerts"],
+                    panelTitle: "Fleet health",
+                    panelStat: "98.7%",
+                    panelLabel: "Device uptime last 30 days",
+                    image: {
+                        src: "/images/aqua_sensor.png",
+                        alt: "BlueIoT sensor hardware",
+                    },
+                    metrics: {
+                        quality: 86,
+                        feeding: 92,
+                        alert: 99,
+                    },
+                    bullets: [
+                        "Sensor multi-parameter dengan kalibrasi otomatis dan koneksi stabil.",
+                        "Dashboard kondisi kolam real-time dengan notifikasi prioritas.",
+                        "Integrasi feeder dan aerator untuk respon cepat ketika ada penurunan kualitas air.",
+                    ],
+                },
+                "feeding-vision": {
+                    kicker: "Feeding Vision / AquaPulse",
+                    title: "AI feeding vision untuk optimasi pakan",
+                    summary:
+                        "AquaPulse memadukan kamera bawah air, computer vision, dan log pakan untuk memastikan feeding berjalan presisi. Operator bisa melihat pola makan dan growth tanpa harus turun ke kolam.",
+                    badges: ["Underwater vision", "Feed control", "Growth map"],
+                    panelTitle: "Feed efficiency",
+                    panelStat: "32%",
+                    panelLabel: "Average feed savings",
+                    image: {
+                        src: "/images/aqua_dashboard.png",
+                        alt: "Feeding vision dashboard",
+                    },
+                    metrics: {
+                        quality: 78,
+                        feeding: 95,
+                        alert: 93,
+                    },
+                    bullets: [
+                        "Deteksi pola makan real-time dengan highlight area aktif.",
+                        "Rekomendasi feeding otomatis berdasarkan data historis.",
+                        "Integrasi kamera dan sensor untuk mengurangi overfeeding.",
+                    ],
+                },
+                "reef-biosecurity": {
+                    kicker: "Biosecurity / ReefSense",
+                    title: "Grid biosecurity untuk hatchery premium",
+                    summary:
+                        "ReefSense memantau kualitas air masuk, disinfection, dan akses area sensitif. Semua data terekam untuk audit dan traceability.",
+                    badges: ["Access control", "Disinfect tracking", "Traceable"],
+                    panelTitle: "Biosecurity watch",
+                    panelStat: "24/7",
+                    panelLabel: "Critical zone monitoring",
+                    image: {
+                        src: "/images/aqua_facility.png",
+                        alt: "Biosecurity facility monitoring",
+                    },
+                    metrics: {
+                        quality: 92,
+                        feeding: 70,
+                        alert: 98,
+                    },
+                    bullets: [
+                        "Sensor disinfection dan flow meter di setiap jalur air.",
+                        "Alert cepat untuk anomali kualitas air masuk.",
+                        "Pelacakan data historis untuk audit internal.",
+                    ],
+                },
+            };
+
+            const params = new URLSearchParams(window.location.search);
+            const slug = params.get("project") || "blueiot";
+            const data = projects[slug] || projects.blueiot;
+
+            const setText = (selector, value) => {
+                const el = document.querySelector(selector);
+                if (el) el.textContent = value;
+            };
+
+            setText("[data-project-kicker]", data.kicker);
+            setText("[data-project-title]", data.title);
+            setText("[data-project-summary]", data.summary);
+            setText("[data-panel-title]", data.panelTitle);
+            setText("[data-panel-stat]", data.panelStat);
+            setText("[data-panel-label]", data.panelLabel);
+
+            const imageEl = document.querySelector("[data-project-hero-image]");
+            if (imageEl) {
+                imageEl.src = data.image.src;
+                imageEl.alt = data.image.alt;
+            }
+
+            const badges = document.querySelectorAll("[data-project-badge]");
+            badges.forEach((badge, index) => {
+                badge.textContent = data.badges[index] || "";
+            });
+
+            const metricValues = document.querySelectorAll(
+                "[data-metric-value]"
+            );
+            metricValues.forEach((el) => {
+                const key = el.getAttribute("data-metric-value");
+                const value = data.metrics[key];
+                if (value !== undefined) {
+                    el.textContent = value + "%";
+                }
+            });
+
+            const metricBars = document.querySelectorAll("[data-metric-bar]");
+            metricBars.forEach((bar) => {
+                const key = bar.getAttribute("data-metric-bar");
+                const value = data.metrics[key];
+                if (value !== undefined) {
+                    bar.style.width = value + "%";
+                }
+            });
+
+            const bulletEls = document.querySelectorAll("[data-bullet]");
+            bulletEls.forEach((el, index) => {
+                if (data.bullets[index]) {
+                    el.textContent = data.bullets[index];
+                }
+            });
+
+            document.title = data.title + " | AquaSmart Platform";
+        </script>
+    </body>
+</html>

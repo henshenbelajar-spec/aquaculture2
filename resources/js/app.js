@@ -1,65 +1,165 @@
 import './bootstrap';
 import Lenis from '@studio-freight/lenis';
 
-document.addEventListener("DOMContentLoaded", () => {
-    // 1. Initialize Lenis for Smooth Scrolling
-    const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // https://www.desmos.com/calculator/brs54l4xou
-        direction: 'vertical',
-        gestureDirection: 'vertical',
-        smooth: true,
-        mouseMultiplier: 1,
-        smoothTouch: false,
-        touchMultiplier: 2,
-        infinite: false,
-    });
+document.addEventListener('DOMContentLoaded', () => {
+    const root = document.documentElement;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const supportsHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const coarsePointer = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    const hardwareConcurrency = navigator.hardwareConcurrency ?? 8;
+    const deviceMemory = navigator.deviceMemory ?? 8;
+    const lowPowerDevice = hardwareConcurrency <= 4 || deviceMemory <= 4;
+    const mobileDevice = coarsePointer || window.innerWidth < 768;
 
-    // lenis.on('scroll', (e) => {
-    //     console.log(e)
-    // })
+    root.classList.toggle('is-low-motion', prefersReducedMotion);
+    root.classList.toggle('is-low-power', lowPowerDevice);
+    root.classList.toggle('is-mobile-device', mobileDevice);
 
-    function raf(time) {
-        lenis.raf(time);
+    let lenis = null;
+
+    if (!prefersReducedMotion && !mobileDevice) {
+        lenis = new Lenis({
+            lerp: lowPowerDevice ? 0.12 : 0.085,
+            smoothWheel: true,
+            syncTouch: false,
+            gestureOrientation: 'vertical',
+            touchMultiplier: 1,
+            wheelMultiplier: lowPowerDevice ? 0.82 : 0.9,
+            infinite: false,
+            autoResize: true,
+        });
+
+        const raf = (time) => {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        };
+
         requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', (event) => {
+            const href = anchor.getAttribute('href');
 
-    // 2. Intersection Observer for Scroll Animations
-    // Select all elements that should animate in on scroll
-    const revealElements = document.querySelectorAll('.reveal-up');
-
-    const observerOptions = {
-        root: null, // viewport
-        rootMargin: '0px 0px -10% 0px', // Trigger slighly before bottom
-        threshold: 0.1 // 10% visible
-    };
-
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Add the visible class to trigger the animation
-                entry.target.classList.add('is-visible');
-                
-                // Optionally stop observing once revealed
-                // observer.unobserve(entry.target); 
+            if (!href || href === '#') {
+                return;
             }
-        });
-    }, observerOptions);
 
-    revealElements.forEach(el => revealObserver.observe(el));
+            const target = document.querySelector(href);
 
-    // 3. Mobile touch stay-active for float-cards
-    const floatCards = document.querySelectorAll('.float-card');
-    floatCards.forEach(card => {
-        card.addEventListener('click', function() {
-            // Remove active from others
-            floatCards.forEach(c => {
-                if(c !== this) c.classList.remove('is-active');
+            if (!target) {
+                return;
+            }
+
+            event.preventDefault();
+
+            if (lenis) {
+                lenis.scrollTo(target, {
+                    offset: -88,
+                    duration: lowPowerDevice ? 0.8 : 0.95,
+                });
+
+                return;
+            }
+
+            const targetTop = target.getBoundingClientRect().top + window.scrollY - 88;
+
+            window.scrollTo({
+                top: targetTop,
+                behavior: 'smooth',
             });
-            // Toggle active on clicked card
-            this.classList.toggle('is-active');
         });
     });
+
+    const revealElements = document.querySelectorAll(
+        '.reveal-up, .reveal-left, .reveal-right, .reveal-scale, [data-reveal]'
+    );
+
+    const revealElement = (element) => {
+        requestAnimationFrame(() => {
+            element.classList.add('is-visible');
+        });
+    };
+
+    if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        revealElements.forEach(revealElement);
+    } else {
+        const revealObserver = new IntersectionObserver(
+            (entries, observer) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
+
+                    revealElement(entry.target);
+                    observer.unobserve(entry.target);
+                });
+            },
+            {
+                root: null,
+                rootMargin: '0px 0px -12% 0px',
+                threshold: 0.14,
+            }
+        );
+
+        revealElements.forEach((element) => {
+            revealObserver.observe(element);
+        });
+    }
+
+    const floatCards = document.querySelectorAll('.float-card');
+    const featureCards = document.querySelectorAll('.feature-card');
+
+    const triggerFeatureGlow = (card) => {
+        card.classList.remove('flash-glow');
+        void card.offsetWidth;
+        card.classList.add('flash-glow');
+
+        clearTimeout(card._featureGlowTimeout);
+        card._featureGlowTimeout = window.setTimeout(() => {
+            card.classList.remove('flash-glow');
+        }, 760);
+    };
+
+    featureCards.forEach((card) => {
+        if (supportsHover && !prefersReducedMotion) {
+            card.addEventListener('mouseenter', () => {
+                triggerFeatureGlow(card);
+            });
+        }
+
+        card.addEventListener('focusin', () => {
+            card.classList.add('is-active');
+            triggerFeatureGlow(card);
+        });
+
+        card.addEventListener('focusout', () => {
+            card.classList.remove('is-active');
+        });
+    });
+
+    if (coarsePointer) {
+        floatCards.forEach((card) => {
+            card.addEventListener('click', () => {
+                if (!card.classList.contains('feature-card')) {
+                    floatCards.forEach((otherCard) => {
+                        if (otherCard !== card) {
+                            otherCard.classList.remove('is-active');
+                        }
+                    });
+                }
+
+                card.classList.add('is-active');
+
+                if (card.classList.contains('feature-card')) {
+                    triggerFeatureGlow(card);
+                }
+
+                clearTimeout(card._mobileActiveTimeout);
+                card._mobileActiveTimeout = window.setTimeout(() => {
+                    card.classList.remove('is-active');
+                }, 620);
+            });
+        });
+    }
 });
