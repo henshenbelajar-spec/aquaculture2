@@ -429,6 +429,56 @@
             </div>
         </section>
 
+        <section class="w-full pb-8 z-10">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <div class="signal-strip">
+                    <article class="signal-card reveal-scale reveal-delay-100">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <div class="signal-label">Sites Connected</div>
+                                <div class="signal-value">247 <span>active ponds</span></div>
+                            </div>
+                            <span class="signal-pulse" aria-hidden="true"></span>
+                        </div>
+                        <p class="signal-note">Always-on telemetry spanning pond farms, nursery tanks, and RAS modules.</p>
+                    </article>
+
+                    <article class="signal-card reveal-scale reveal-delay-200">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <div class="signal-label">Alert Latency</div>
+                                <div class="signal-value">42s <span>average response</span></div>
+                            </div>
+                            <span class="signal-pulse bg-[#7DD3FC] shadow-[0_0_18px_-3px_rgba(125,211,252,0.82)]" aria-hidden="true"></span>
+                        </div>
+                        <p class="signal-note">Escalations move from threshold breach to operator notification in under one minute.</p>
+                    </article>
+
+                    <article class="signal-card reveal-scale reveal-delay-300">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <div class="signal-label">Core Inputs</div>
+                                <div class="signal-value">4 + <span>sensor channels</span></div>
+                            </div>
+                            <span class="signal-pulse bg-[#FFB36B] shadow-[0_0_18px_-3px_rgba(255,179,107,0.82)]" aria-hidden="true"></span>
+                        </div>
+                        <p class="signal-note">pH, temperature, turbidity, TDS, dissolved oxygen, and feeder state in one stack.</p>
+                    </article>
+
+                    <article class="signal-card reveal-scale reveal-delay-400">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <div class="signal-label">Ops Coverage</div>
+                                <div class="signal-value">24/7 <span>with mobile access</span></div>
+                            </div>
+                            <span class="signal-pulse bg-[#00F0FF] shadow-[0_0_18px_-3px_rgba(0,240,255,0.82)]" aria-hidden="true"></span>
+                        </div>
+                        <p class="signal-note">Field teams can review dashboards, alerts, and feeder actions from any device.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
         <!-- Key Features Section -->
         <section id="features" class="w-full py-24 z-10">
             <div class="max-w-7xl mx-auto px-6 md:px-12">
@@ -608,6 +658,227 @@
             </div>
         </section>
 
+        <section id="workflow" class="w-full py-24 z-10 relative">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <div class="text-center mb-16 reveal-up">
+                    <div class="device-kicker mx-auto">Operational Flow</div>
+                    <h2 class="section-title font-bold text-white mt-6 mb-4">From Sensor Feed to <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] to-[#44A2F0]">Closed-Loop Action</span>
+                    </h2>
+                    <p class="section-subtitle max-w-2xl mx-auto text-pretty">AquaSmart keeps the surface simple while the
+                        backend stays structured: capture clean field data, route it through one control layer, then push the
+                        right action back to operators and feeders.</p>
+                </div>
+
+                <div class="workflow-shell reveal-up">
+                    <div class="workflow-layout">
+                        <div class="workflow-intro reveal-left">
+                            <div class="workflow-intro__label">Control Narrative</div>
+                            <h3 class="workflow-intro__title">Bukan tiga widget terpisah. Satu alur kerja yang benar-benar nyambung.</h3>
+                            <p class="workflow-intro__copy">Kita ubah pola visualnya supaya tidak terasa kotak-kotak terus. AquaSmart tetap terlihat teknis, tapi alurnya sekarang dibaca seperti sistem yang bergerak dari lapangan ke keputusan lalu ke aksi.</p>
+                            <div class="workflow-metrics">
+                                <div class="workflow-metric">
+                                    <span class="workflow-metric__value">4+</span>
+                                    <span class="workflow-metric__label">core sensor streams monitored in one cycle</span>
+                                </div>
+                                <div class="workflow-metric">
+                                    <span class="workflow-metric__value">1</span>
+                                    <span class="workflow-metric__label">control surface for alerts, telemetry, and feeder logic</span>
+                                </div>
+                            </div>
+                            <p class="workflow-intro__note">Pendekatan ini tetap ringan untuk device kentang karena hanya pakai layout, border, dan reveal yang sudah ada. Tidak ada animasi JS tambahan di section ini.</p>
+                        </div>
+
+                        <div class="workflow-track">
+                            <div class="workflow-axis" aria-hidden="true"></div>
+                            <article class="workflow-stage workflow-stage--sensor reveal-right">
+                                <div class="workflow-stage__pin">01</div>
+                                <div class="workflow-stage__body">
+                                    <div class="workflow-stage__row">
+                                        <div>
+                                            <div class="workflow-stage__eyebrow">Sensor Layer</div>
+                                            <h3 class="workflow-stage__title">Capture</h3>
+                                        </div>
+                                        <span class="workflow-stage__tag">Edge intake</span>
+                                    </div>
+                                    <p class="workflow-stage__desc">Submersive probes read pH, TDS, turbidity, temperature, and dissolved oxygen with stable interval sampling directly from the pond.</p>
+                                    <div class="workflow-stage__line" aria-hidden="true" style="--workflow-meter: 72%;"><span></span></div>
+                                    <div class="workflow-stage__footer">
+                                        <div class="workflow-stage__chips">
+                                            <span class="workflow-stage__chip">pH</span>
+                                            <span class="workflow-stage__chip">DO</span>
+                                            <span class="workflow-stage__chip">Turbidity</span>
+                                        </div>
+                                        <span class="workflow-stage__signal">Live / scheduled</span>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="workflow-stage workflow-stage--logic reveal-up reveal-delay-100">
+                                <div class="workflow-stage__pin">02</div>
+                                <div class="workflow-stage__body">
+                                    <div class="workflow-stage__row">
+                                        <div>
+                                            <div class="workflow-stage__eyebrow">Gateway + Rules</div>
+                                            <h3 class="workflow-stage__title">Orchestrate</h3>
+                                        </div>
+                                        <span class="workflow-stage__tag">Decision layer</span>
+                                    </div>
+                                    <p class="workflow-stage__desc">One logic layer validates readings, pushes alerts, syncs the dashboard state, and determines when feeder or aerator automation should respond.</p>
+                                    <div class="workflow-stage__line" aria-hidden="true" style="--workflow-meter: 84%;"><span></span></div>
+                                    <div class="workflow-stage__footer">
+                                        <div class="workflow-stage__chips">
+                                            <span class="workflow-stage__chip">Thresholds</span>
+                                            <span class="workflow-stage__chip">MQTT</span>
+                                            <span class="workflow-stage__chip">Node Control</span>
+                                        </div>
+                                        <span class="workflow-stage__signal">Alerts + automation</span>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="workflow-stage workflow-stage--action reveal-left reveal-delay-200">
+                                <div class="workflow-stage__pin">03</div>
+                                <div class="workflow-stage__body">
+                                    <div class="workflow-stage__row">
+                                        <div>
+                                            <div class="workflow-stage__eyebrow">Dashboard + Action</div>
+                                            <h3 class="workflow-stage__title">Respond</h3>
+                                        </div>
+                                        <span class="workflow-stage__tag">Execution</span>
+                                    </div>
+                                    <p class="workflow-stage__desc">Operators see one calm interface while alerts, feeders, and field actions stay aligned with the same live state across mobile and desktop.</p>
+                                    <div class="workflow-stage__line" aria-hidden="true" style="--workflow-meter: 91%;"><span></span></div>
+                                    <div class="workflow-stage__footer">
+                                        <div class="workflow-stage__chips">
+                                            <span class="workflow-stage__chip">Mobile PWA</span>
+                                            <span class="workflow-stage__chip">Alerts</span>
+                                            <span class="workflow-stage__chip">Feeder Auto</span>
+                                        </div>
+                                        <span class="workflow-stage__signal">Manual + automatic</span>
+                                    </div>
+                                </div>
+                            </article>
+                        <article class="hidden" aria-hidden="true">
+                            <div class="flow-card__head">
+                                <div class="flow-card__step">
+                                    <span class="process-index">01</span>
+                                    <div class="flow-card__step-copy">
+                                        <span class="flow-card__eyebrow">Sensor Layer</span>
+                                        <span class="flow-card__mini">Edge telemetry intake</span>
+                                    </div>
+                                </div>
+                                <span class="device-card__badge flow-card__badge">Input</span>
+                            </div>
+                            <div class="flow-card__visual">
+                                <div class="device-card__icon flow-card__icon">
+                                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                                    </svg>
+                                </div>
+                                <div class="flow-card__meter" style="--flow-meter: 72%;" aria-hidden="true"><span></span>
+                                </div>
+                            </div>
+                            <h3 class="device-card__title text-white">Capture</h3>
+                            <p class="device-card__desc mt-3">Submersive probes read pH, TDS, turbidity, temperature, and
+                                dissolved oxygen with stable interval sampling at the edge.</p>
+                            <div class="device-tags flow-card__chips">
+                                <span class="device-tag">pH</span>
+                                <span class="device-tag">DO</span>
+                                <span class="device-tag">Turbidity</span>
+                            </div>
+                            <div class="flow-card__footer">
+                                <div class="flow-card__metric">
+                                    <span class="flow-card__metric-label">Sampling cadence</span>
+                                    <span class="flow-card__metric-value">Live / scheduled</span>
+                                </div>
+                                <div class="flow-card__direction">To gateway</div>
+                            </div>
+                        </article>
+
+                        <article class="hidden" aria-hidden="true">
+                            <div class="flow-card__head">
+                                <div class="flow-card__step">
+                                    <span class="process-index">02</span>
+                                    <div class="flow-card__step-copy">
+                                        <span class="flow-card__eyebrow">Gateway + Rules</span>
+                                        <span class="flow-card__mini">Validation and decision layer</span>
+                                    </div>
+                                </div>
+                                <span class="device-card__badge flow-card__badge">Logic</span>
+                            </div>
+                            <div class="flow-card__visual">
+                                <div class="device-card__icon flow-card__icon">
+                                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                                    </svg>
+                                </div>
+                                <div class="flow-card__meter" style="--flow-meter: 84%;" aria-hidden="true"><span></span>
+                                </div>
+                            </div>
+                            <h3 class="device-card__title text-white">Orchestrate</h3>
+                            <p class="device-card__desc mt-3">One logic layer validates readings, pushes alerts, syncs to the
+                                dashboard, and decides when automation needs to respond.</p>
+                            <div class="device-tags flow-card__chips">
+                                <span class="device-tag">Thresholds</span>
+                                <span class="device-tag">MQTT</span>
+                                <span class="device-tag">Node Control</span>
+                            </div>
+                            <div class="flow-card__footer">
+                                <div class="flow-card__metric">
+                                    <span class="flow-card__metric-label">Decision path</span>
+                                    <span class="flow-card__metric-value">Alerts + automation</span>
+                                </div>
+                                <div class="flow-card__direction">To dashboard</div>
+                            </div>
+                        </article>
+
+                        <article class="hidden" aria-hidden="true">
+                            <div class="flow-card__head">
+                                <div class="flow-card__step">
+                                    <span class="process-index">03</span>
+                                    <div class="flow-card__step-copy">
+                                        <span class="flow-card__eyebrow">Dashboard + Action</span>
+                                        <span class="flow-card__mini">Operator and device response</span>
+                                    </div>
+                                </div>
+                                <span class="device-card__badge flow-card__badge">Output</span>
+                            </div>
+                            <div class="flow-card__visual">
+                                <div class="device-card__icon flow-card__icon">
+                                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+                                    </svg>
+                                </div>
+                                <div class="flow-card__meter" style="--flow-meter: 91%;" aria-hidden="true"><span></span>
+                                </div>
+                            </div>
+                            <h3 class="device-card__title text-white">Respond</h3>
+                            <p class="device-card__desc mt-3">Operators see one calm interface while feeders, aerators, and
+                                alerts stay aligned with the same live state.</p>
+                            <div class="device-tags flow-card__chips">
+                                <span class="device-tag">Mobile PWA</span>
+                                <span class="device-tag">Alerts</span>
+                                <span class="device-tag">Feeder Auto</span>
+                            </div>
+                            <div class="flow-card__footer">
+                                <div class="flow-card__metric">
+                                    <span class="flow-card__metric-label">Execution mode</span>
+                                    <span class="flow-card__metric-value">Manual + automatic</span>
+                                </div>
+                                <div class="flow-card__direction">Live action</div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- UI/Dashboard Presentation -->
         <section id="dashboard" class="w-full py-24 z-10">
             <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col lg:flex-row items-center gap-16">
@@ -719,6 +990,116 @@
                         <div class="absolute inset-0 shadow-[inset_0_0_100px_rgba(7,17,33,0.8)] pointer-events-none">
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="use-cases" class="w-full py-24 z-10">
+            <div class="max-w-7xl mx-auto px-6 md:px-12">
+                <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14">
+                    <div class="reveal-left">
+                        <div class="device-kicker">Farm Modes</div>
+                        <h2 class="section-title font-bold text-white mt-6">One Platform for <span
+                                class="text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] to-[#44A2F0]">Daily Operations</span>
+                        </h2>
+                    </div>
+                    <p class="section-subtitle max-w-2xl reveal-right">Different production environments demand different
+                        rhythms. AquaSmart keeps the visual language consistent while adapting sensor priorities, alert logic,
+                        and automation rules to the real farm context.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 md:gap-6">
+                    <article class="environment-card reveal-up reveal-delay-100 relative overflow-hidden">
+                        <div class="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[#00F0FF]/60 to-transparent"></div>
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="device-card__icon">
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 15a4 4 0 014-4h10a4 4 0 010 8H7a4 4 0 01-4-4zm0 0V9a4 4 0 014-4h8" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-[11px] font-bold uppercase tracking-[0.18em] text-[#87CFEA]">Grow-out</div>
+                                <h3 class="environment-title text-xl">Pond Monitoring</h3>
+                            </div>
+                        </div>
+                        <p class="environment-desc">Watch dissolved oxygen swings, turbidity drift, and feeding windows before
+                            they affect conversion or fish comfort.</p>
+                        <div class="device-tags mt-5">
+                            <span class="device-tag">DO</span>
+                            <span class="device-tag">Temp</span>
+                            <span class="device-tag">Feeder</span>
+                        </div>
+                    </article>
+
+                    <article class="environment-card reveal-up reveal-delay-200 relative overflow-hidden">
+                        <div class="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[#7DD3FC]/60 to-transparent"></div>
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="device-card__icon">
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M8 7h8M8 11h8M8 15h5M5 19h14a2 2 0 002-2V7l-4-4H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-[11px] font-bold uppercase tracking-[0.18em] text-[#87CFEA]">Nursery</div>
+                                <h3 class="environment-title text-xl">Hatchery Care</h3>
+                            </div>
+                        </div>
+                        <p class="environment-desc">Maintain tighter thresholds for early-life stages where pH stability and
+                            temperature consistency matter most.</p>
+                        <div class="device-tags mt-5">
+                            <span class="device-tag">pH</span>
+                            <span class="device-tag">Temp</span>
+                            <span class="device-tag">Alerts</span>
+                        </div>
+                    </article>
+
+                    <article class="environment-card reveal-up reveal-delay-300 relative overflow-hidden">
+                        <div class="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[#6EE7B7]/60 to-transparent"></div>
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="device-card__icon">
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 6h16M6 10h12M8 14h8M10 18h4" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-[11px] font-bold uppercase tracking-[0.18em] text-[#87CFEA]">Recirculating</div>
+                                <h3 class="environment-title text-xl">RAS Operations</h3>
+                            </div>
+                        </div>
+                        <p class="environment-desc">Track multiple tanks with one operating model, making anomalies easier to
+                            see before recirculation issues cascade.</p>
+                        <div class="device-tags mt-5">
+                            <span class="device-tag">TDS</span>
+                            <span class="device-tag">Turbidity</span>
+                            <span class="device-tag">History</span>
+                        </div>
+                    </article>
+
+                    <article class="environment-card reveal-up reveal-delay-400 relative overflow-hidden">
+                        <div class="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[#FFB36B]/60 to-transparent"></div>
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="device-card__icon">
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 6v12m6-6H6" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-[11px] font-bold uppercase tracking-[0.18em] text-[#87CFEA]">Automation</div>
+                                <h3 class="environment-title text-xl">Feeder Control</h3>
+                            </div>
+                        </div>
+                        <p class="environment-desc">Combine sensor state with operator rules to schedule feed actions without
+                            losing visibility over manual overrides.</p>
+                        <div class="device-tags mt-5">
+                            <span class="device-tag">Relay</span>
+                            <span class="device-tag">Schedule</span>
+                            <span class="device-tag">Manual / Auto</span>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
